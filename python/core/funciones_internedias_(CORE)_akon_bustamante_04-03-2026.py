@@ -112,3 +112,21 @@ Nueva York
 Madrid
 Tokio​
 """
+
+
+
+
+datos = [
+   {"nombre": "Carlos", "puntaje": 80},
+   {"nombre": "María", "puntaje": 95},
+   {"nombre": "Pedro", "puntaje": 70}
+]
+
+datos[2]["puntaje"] = 75
+def printData(siteName : int, lista):
+    print(f"{lista[siteName]["nombre"]} obtuvo {lista[siteName]["puntaje"]} puntos")
+printData(0, datos)
+
+
+obtener_valores("nombre", datos)
+obtener_valores("puntaje", datos)
