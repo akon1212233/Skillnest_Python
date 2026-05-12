@@ -10,5 +10,6 @@ class User(object):
     
 
 akon = User("Akon", "akonbustamante11@gmail.com", 1000)
+print(akon.name, akon.balance)
 akon.comprar(300)
 print(akon.name, akon.balance)

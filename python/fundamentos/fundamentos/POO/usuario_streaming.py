@@ -1,6 +1,6 @@
 class usuarioStreaming:
-    def __init__(self, name, email):
-        self.name = name
+    def __init__(self, nickname, email):
+        self.nickname = nickname
         self.email = email
         self.sub = "Gratis"
         self.reproductionList = []
@@ -32,12 +32,13 @@ class usuarioStreaming:
     
     def showInfoUser(self):
         """Muestra la información del usuario y su lista de reproducción."""
-        print(f"Usuario: {self.name} | Email: {self.email} | Suscripcion: {self.sub} | Lista: {self.reproductionList}")
+        print(f"Usuario: {self.nickname} | Email: {self.email} | Suscripcion: {self.sub} | Lista: {self.reproductionList}")
         return self
 
 akon = usuarioStreaming("akon12123","akonBustamante@liceovvh.cl")
 marcelo = usuarioStreaming("marck98","marceloRios@liceovvh.cl")
 daniel = usuarioStreaming("calzoncillofrio","danielJimenez@liceovvh.cl")
+geimi = usuarioStreaming("nqzk", "jheimytolentino@liceovvh.cl")
 
 print()
 akon.changeSub("Premium").upToList("Soy Feo Pero Rico").upToList("Las Seis").showInfoUser().lookContent("Desnudos").showInfoUser().lookContent("La innombrable").showInfoUser()
@@ -46,3 +47,5 @@ marcelo.changeSub("Estandar").upToList("Te vas").upToList("El Gran Tirano").show
 print()
 daniel.changeSub("premium barato").upToList("Hijos de la Tierra").upToList("Sube a Nacer Conmigo").upToList("Gran Pecador").upToList("Pasto seco").showInfoUser().lookContent("Gran Pecador").showInfoUser().lookContent("Es el Amor").showInfoUser()
 print()
+print("\n\n")
+#Esta bueno para dividir usuario, pero como le hago para mostrar todos los usuarios de una? (osea unificar todos los datos en una)
