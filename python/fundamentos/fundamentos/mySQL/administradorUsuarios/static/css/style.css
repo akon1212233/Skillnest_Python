@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main{
+    font-family: arial;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.arreglo{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+button{
+    width: 100px;
+    box-shadow: 2px 2px 2px #000;
+}/* Bloque principal de interfaz */
+.contenedor-interfaz {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Posiciona el botón arriba a la derecha */
+    gap: 15px;            /* Distancia vertical hacia la tabla */
+    width: 100%;
+    max-width: 800px;     
+    margin: 0 auto;       
+}
+
+/* Fila superior */
+.cabecera-acciones {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+/* Formato básico estructural de tabla */
+.tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000;
+}
+
+/* Espacio interno para dar volumen a las filas */
+.tabla-usuarios th, 
+.tabla-usuarios td {
+    padding: 15px 15px;   
+    text-align: left;     
+    vertical-align: middle;
+    border: 2px solid #000;
+}
+
+/* Tu clase contenedora de botones de acción */
+.items {
+    display: flex;
+    gap: 10px;            /* Espacio horizontal regular entre iconos */
+    align-items: center;
+}
+
+/* Dimensionamiento estricto de elementos gráficos dentro de los botones */
+.items button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;         /* Margen interno uniforme del botón */
+}
+
+.items svg,
+.items img {
+    width: 20px;          /* Escala uniforme de ancho para los gráficos */
+    height: 20px;         /* Escala uniforme de alto para los gráficos */
+}
