@@ -174,3 +174,4 @@ while continuar:
 
     else:
         print("Opción inválida, intenta de nuevo.")
+

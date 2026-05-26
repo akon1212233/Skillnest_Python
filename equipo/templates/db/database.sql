@@ -22,7 +22,7 @@ USE `mydb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`planEntrenamiento` (
   `id_Plan_Entrenamiento` INT NOT NULL AUTO_INCREMENT,
-  `horario` DATETIME NOT NULL,
+  `horario` VARCHAR(50) NOT NULL,
   `duracion` INT NOT NULL,
   `dieta` TEXT NOT NULL,
   `rutina` TEXT NOT NULL,
@@ -88,8 +88,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Entrenador` (
   `id_Entrenadore` INT NOT NULL AUTO_INCREMENT,
-  `salario` INT NOT NULL,
   `nombre` VARCHAR(100) NOT NULL,
+  `salario` INT NOT NULL,
   `phone` VARCHAR(14) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `edad` INT NOT NULL,
@@ -111,3 +111,96 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- 3 Clientes minimos
+-- membresias
+
+USE mydb
+-- Clientes
+INSERT INTO Clientes(nombre, email, edad, phone, membresias_id_membresia, id_Plan_Entrenamiento) VALUES
+("Ramon", "Ramo2913@gmail.com", 39, 56937615273, 3, 1),
+("Camilo", "deibercamilo@gmail.com", 19, 56934527643, 1, 2),
+("Matias", "matiasrios@gmail.com", 15, 56922875432, 2, 2),
+("Randy", "randy@gmail.com", 20, 56989887534, 3, 1);
+
+-- Membresias
+INSERT INTO membresias(nombre, beneficios, precio) VALUES 
+("Gratis", "Plan estándar, sólo máquinas", 0.00),
+("Premium", "entrenador dia por medio", 15.99),
+("Golden", "Todo incluido (Entrenador personal, dieta personalizada, acceso a todas las maquina)", 30.00);
+
+-- Plan Entrenamiento
+INSERT INTO planEntrenamiento(horario, duracion, dieta, rutina) VALUES
+("L,Ma,Mi,J,V", 1, "50g de pollo y 200g de arroz","Todos los dias pierna, pecho y brazo"),
+("L,Mi,V", 2, "2 hamburguesas con triple carne  y una coca de 3 litros por cada hora", "primer dia pecho y tricep, segundo dia espalda bicep y hombro y tercer dia pierna completa");
+
+
+-- Entrenadores
+INSERT INTO Entrenador(nombre, salario, phone, email, edad, Clientes_id_Cliente) VALUES 
+("Alexander", 300.000, 56934571876, "ale@gmail.com", 30, 1),
+("Sebastián", 450.000, 56908581764, "seba@gmail.com", 45, 4),
+("Donovan" 10.000, 56982549752, "donas@gmail.com" 67, 3);
+
+
+-- Edicion de datos.
+
+-- eliminar a 1 cliente minimo :P -LISTO
+
+UPDATE Clientes
+SET deleted = 1
+WHERE id_Cliente = 2 OR id_Cliente = 4;
+
+-- Recuperar al cliente -LISTO
+
+UPDATE Clientes
+SET deleted = 0
+WHERE id_Cliente = 2;
+
+-- cambiar minimo el  de un 1 cliente -LISTO
+UPDATE Clientes
+SET membresias_id_membresia = 1
+WHERE id_Cliente = 1;
+
+-- Clientes
+-- mostrar datos activos
+SELECT nombre,email,membresias_id_membresia,deleted
+FROM Clientes
+WHERE deleted = 0;
+-- mostrar datos eliminados
+SELECT nombre,email,membresias_id_membresia,deleted
+FROM Clientes
+WHERE deleted = 1;
+
+-- Membresias
+-- mostrar datos activos
+SELECT nombre, beneficios, precio, deleted
+FROM membresias
+WHERE deleted = 0;
+-- mostrar datos eliminados
+SELECT nombre, beneficios, precio, deleted
+FROM membresias
+WHERE deleted = 1;
+
+
+-- Entrenadores
+-- mostrar datos activos
+SELECT nombre, salario, email, edad, deleted
+FROM Entrenador
+WHERE deleted = 0;
+-- mostrar datos eliminados
+SELECT nombre, salario, email, edad, deleted
+FROM Entrenador
+WHERE deleted = 1;
+
+-- Plan Entrenamiento
+-- mostrar datos activos
+SELECT horario, duracion, dieta, rutina, deleted
+FROM planEntrenamiento
+WHERE deleted = 0;
+-- mostrar datos eliminados
+SELECT horario, duracion, dieta, rutina, deleted
+FROM planEntrenamiento
+WHERE deleted = 1;
+
+-- Esto por cada tabla
