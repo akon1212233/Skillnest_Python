@@ -8,168 +8,185 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema gimnasio_db
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema gimnasio_db
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `gimnasio_db` DEFAULT CHARACTER SET utf8 ;
+USE `gimnasio_db` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`planEntrenamiento`
+-- Table `gimnasio_db`.`planEntrenamiento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`planEntrenamiento` (
+CREATE TABLE IF NOT EXISTS `gimnasio_db`.`planEntrenamiento` (
   `id_Plan_Entrenamiento` INT NOT NULL AUTO_INCREMENT,
   `horario` VARCHAR(50) NOT NULL,
   `duracion` INT NOT NULL,
   `dieta` TEXT NOT NULL,
   `rutina` TEXT NOT NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `deleted` TINYINT(1) NULL,
-  PRIMARY KEY (`id_Plan_Entrenamiento`))
-ENGINE = InnoDB;
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id_Plan_Entrenamiento`)
+) ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`membresias`
+-- Table `gimnasio_db`.`membresias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`membresias` (
+CREATE TABLE IF NOT EXISTS `gimnasio_db`.`membresias` (
   `id_membresia` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `beneficios` VARCHAR(200) NOT NULL,
-  `precio` INT NOT NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
+  `precio` DECIMAL(10,2) NOT NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `deleted` TINYINT(1) NULL,
-  PRIMARY KEY (`id_membresia`))
-ENGINE = InnoDB;
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id_membresia`)
+) ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Clientes`
+-- Table `gimnasio_db`.`clientes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Clientes` (
-  `id_Cliente` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `gimnasio_db`.`clientes` (
+  `id_cliente` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `edad` INT NOT NULL,
-  `phone` VARCHAR(14) NOT NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
+  `phone` VARCHAR(15) NOT NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `deleted` TINYINT(1) NULL,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
   `id_Plan_Entrenamiento` INT NOT NULL,
-  `membresias_id_membresia` INT NOT NULL,
-  PRIMARY KEY (`id_Cliente`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  UNIQUE INDEX `phone_UNIQUE` (`phone` ASC) VISIBLE,
-  INDEX `fk_Clientes_planEntrenamiento_idx` (`id_Plan_Entrenamiento` ASC) VISIBLE,
-  INDEX `fk_Clientes_membresias1_idx` (`membresias_id_membresia` ASC) VISIBLE,
-  CONSTRAINT `fk_Clientes_planEntrenamiento`
+  `id_membresia` INT NOT NULL,
+
+  PRIMARY KEY (`id_cliente`),
+
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `phone_UNIQUE` (`phone` ASC),
+
+  INDEX `fk_clientes_planEntrenamiento_idx` (`id_Plan_Entrenamiento` ASC),
+  INDEX `fk_clientes_membresias_idx` (`id_membresia` ASC),
+
+  CONSTRAINT `fk_clientes_planEntrenamiento`
     FOREIGN KEY (`id_Plan_Entrenamiento`)
-    REFERENCES `mydb`.`planEntrenamiento` (`id_Plan_Entrenamiento`)
+    REFERENCES `planEntrenamiento` (`id_Plan_Entrenamiento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Clientes_membresias1`
-    FOREIGN KEY (`membresias_id_membresia`)
-    REFERENCES `mydb`.`membresias` (`id_membresia`)
+
+  CONSTRAINT `fk_clientes_membresias`
+    FOREIGN KEY (`id_membresia`)
+    REFERENCES `membresias` (`id_membresia`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+
+) ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Entrenador`
+-- Table `gimnasio_db`.`entrenador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Entrenador` (
-  `id_Entrenadore` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `gimnasio_db`.`entrenador` (
+  `id_entrenador` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
-  `salario` INT NOT NULL,
-  `phone` VARCHAR(14) NOT NULL,
+  `salario` DECIMAL(10,2) NOT NULL,
+  `phone` VARCHAR(15) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `edad` INT NOT NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `deleted` TINYINT(1) NULL,
-  `Clientes_id_Cliente` INT NOT NULL,
-  PRIMARY KEY (`id_Entrenadore`),
-  INDEX `fk_Entrenador_Clientes1_idx` (`Clientes_id_Cliente` ASC) VISIBLE,
-  CONSTRAINT `fk_Entrenador_Clientes1`
-    FOREIGN KEY (`Clientes_id_Cliente`)
-    REFERENCES `mydb`.`Clientes` (`id_Cliente`)
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  `id_cliente` INT NOT NULL,
+
+  PRIMARY KEY (`id_entrenador`),
+
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `phone_UNIQUE` (`phone` ASC),
+
+  INDEX `fk_entrenador_clientes_idx` (`id_cliente` ASC),
+
+  CONSTRAINT `fk_entrenador_clientes`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `clientes` (`id_cliente`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+
+) ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-
--- 3 Clientes minimos
--- membresias
-
-USE mydb
--- Clientes
-INSERT INTO Clientes(nombre, email, edad, phone, membresias_id_membresia, id_Plan_Entrenamiento) VALUES
-("Ramon", "Ramo2913@gmail.com", 39, 56937615273, 3, 1),
-("Camilo", "deibercamilo@gmail.com", 19, 56934527643, 1, 2),
-("Matias", "matiasrios@gmail.com", 15, 56922875432, 2, 2),
-("Randy", "randy@gmail.com", 20, 56989887534, 3, 1);
+USE gimnasio_db;
+--------------------------
+-- INSERTS
+--------------------------
 
 -- Membresias
 INSERT INTO membresias(nombre, beneficios, precio) VALUES 
 ("Gratis", "Plan estándar, sólo máquinas", 0.00),
 ("Premium", "entrenador dia por medio", 15.99),
-("Golden", "Todo incluido (Entrenador personal, dieta personalizada, acceso a todas las maquina)", 30.00);
+("Golden", "Todo incluido (entrenador personal, dieta personalizada, acceso a todas las maquina)", 30.00);
 
 -- Plan Entrenamiento
 INSERT INTO planEntrenamiento(horario, duracion, dieta, rutina) VALUES
 ("L,Ma,Mi,J,V", 1, "50g de pollo y 200g de arroz","Todos los dias pierna, pecho y brazo"),
 ("L,Mi,V", 2, "2 hamburguesas con triple carne  y una coca de 3 litros por cada hora", "primer dia pecho y tricep, segundo dia espalda bicep y hombro y tercer dia pierna completa");
 
+-- Clientes
+INSERT INTO clientes(nombre, email, edad, phone, id_membresia, id_Plan_Entrenamiento) VALUES
+("Ramon", "Ramo2913@gmail.com", 39, "+56 9 3761 5273", 3, 1),
+("Camilo", "deibercamilo@gmail.com", 19, "+56 9345 7643", 1, 2),
+("Matias", "matiasrios@gmail.com", 15, "+56 9 2287 5432", 2, 2),
+("Randy", "randy@gmail.com", 20, "+56 9 8988 7534", 3, 1);
 
 -- Entrenadores
-INSERT INTO Entrenador(nombre, salario, phone, email, edad, Clientes_id_Cliente) VALUES 
-("Alexander", 300.000, 56934571876, "ale@gmail.com", 30, 1),
-("Sebastián", 450.000, 56908581764, "seba@gmail.com", 45, 4),
-("Donovan" 10.000, 56982549752, "donas@gmail.com" 67, 3);
+INSERT INTO entrenador(nombre, salario, phone, email, edad, id_cliente) VALUES 
+("Alexander", 300.000, "+56 9 3457 1876", "ale@gmail.com", 30, 1),
+("Sebastián", 450.000, "+56 9 0858 1764", "seba@gmail.com", 45, 4),
+("Donovan", 10.000, "+56 9 8254 9752", "donas@gmail.com", 67, 3);
 
 
--- Edicion de datos.
+--------------------------
+-- UPDATES
+--------------------------
 
--- eliminar a 1 cliente minimo :P -LISTO
+-- eliminar a 2 cliente :P
 
-UPDATE Clientes
+UPDATE clientes
 SET deleted = 1
-WHERE id_Cliente = 2 OR id_Cliente = 4;
+WHERE id_cliente = 2 OR id_cliente = 4;
 
--- Recuperar al cliente -LISTO
+-- Recuperar al cliente
 
-UPDATE Clientes
+UPDATE clientes
 SET deleted = 0
-WHERE id_Cliente = 2;
+WHERE id_cliente = 2;
 
--- cambiar minimo el  de un 1 cliente -LISTO
-UPDATE Clientes
-SET membresias_id_membresia = 1
-WHERE id_Cliente = 1;
+-- cambiar membresia de un 1 cliente
+UPDATE clientes
+SET id_membresia = 1
+WHERE id_cliente = 1;
+--------------------------
+-- SELECTS
+--------------------------
 
--- Clientes
+-- clientes
 -- mostrar datos activos
-SELECT nombre,email,membresias_id_membresia,deleted
-FROM Clientes
+SELECT nombre, email, id_membresia, deleted
+FROM clientes
 WHERE deleted = 0;
 -- mostrar datos eliminados
-SELECT nombre,email,membresias_id_membresia,deleted
-FROM Clientes
+SELECT nombre, email, id_membresia, deleted
+FROM clientes
 WHERE deleted = 1;
 
 -- Membresias
@@ -183,14 +200,14 @@ FROM membresias
 WHERE deleted = 1;
 
 
--- Entrenadores
+-- entrenadores
 -- mostrar datos activos
 SELECT nombre, salario, email, edad, deleted
-FROM Entrenador
+FROM entrenador
 WHERE deleted = 0;
 -- mostrar datos eliminados
 SELECT nombre, salario, email, edad, deleted
-FROM Entrenador
+FROM entrenador
 WHERE deleted = 1;
 
 -- Plan Entrenamiento
@@ -203,4 +220,3 @@ SELECT horario, duracion, dieta, rutina, deleted
 FROM planEntrenamiento
 WHERE deleted = 1;
 
--- Esto por cada tabla
