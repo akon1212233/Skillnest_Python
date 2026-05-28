@@ -75,11 +75,13 @@ while continuar:
     print("      SISTEMA DE GESTIÓN DE GIMNASIO      ")
     print("==========================================")
     print("1. Registrar Cliente")
-    print("2. Registrar Entrenador")
-    print("3. Mostrar Clientes")
-    print("4. Mostrar Entrenadores")
-    print("5. Asignar Cliente a Entrenador")
-    print("6. Asignar Plan de Entrenamiento a Cliente")
+    print("2. Cambiar Teléfono de un Cliente")
+    print("3. Registrar Entrenador")
+    print("4. Crear Nuevo Plan de Entrenamiento")
+    print("5. Mostrar Clientes")
+    print("6. Mostrar Entrenadores")
+    print("7. Asignar Cliente a Entrenador")
+    print("8. Asignar Plan de Entrenamiento a Cliente")
     print("0. Salir")
     print("==========================================")
     
@@ -96,8 +98,24 @@ while continuar:
         nuevo_cliente = Cliente(nombre, edad, correo, telefono, membresia)
         todos_los_clientes.append(nuevo_cliente)
         print("Cliente registrado exitosamente.")
-
     elif opcion == 2:
+        print("\n--- CAMBIAR TELÉFONO DE UN CLIENTE ---")
+        if len(todos_los_clientes) == 0:
+            print("No hay clientes registrados para modificar.")
+        else:
+            print("Selecciona el número del cliente:")
+            for posicion, un_cliente in enumerate(todos_los_clientes):
+                print(f"[{posicion}] {un_cliente.nombre} (Teléfono actual: {un_cliente.telefono})")
+            
+            numero_cliente = int(input("Número de cliente: "))
+            nuevo_telefono = input("Ingresa el nuevo número telefónico: ")
+
+            # Buscamos el cliente en la lista y usamos su función interna para cambiarlo
+            cliente_seleccionado = todos_los_clientes[numero_cliente]
+            cliente_seleccionado.actualizar_telefono(nuevo_telefono)
+            print(f"Teléfono de {cliente_seleccionado.nombre} actualizado correctamente.")
+
+    elif opcion == 3:
         print("\n--- REGISTRO DE ENTRENADOR ---")
         nombre = input("Nombre: ")
         edad = int(input("Edad: "))
@@ -108,8 +126,18 @@ while continuar:
         nuevo_entrenador = Entrenador(nombre, edad, correo, telefono, salario)
         todos_los_entrenadores.append(nuevo_entrenador)
         print("Entrenador registrado exitosamente.")
+    elif opcion == 4:
+        print("\n--- CREAR NUEVO PLAN DE ENTRENAMIENTO ---")
+        rutina = input("Nombre de la rutina (ej. Fuerza, Cardio): ")
+        horario = input("Horario recomendado (ej. Mañana, Noche): ")
+        dieta = input("Tipo de dieta (ej. Alta en proteínas): ")
+        duracion = int(input("Duración del plan (en días): "))
 
-    elif opcion == 3:
+        nuevo_plan = PlanEntrenamiento(rutina, horario, dieta, duracion)
+        todos_los_planes.append(nuevo_plan)
+        print(f"¡Plan '{rutina}' creado y añadido a la lista de opciones!")
+
+    elif opcion == 5:
         print("\n--- LISTA DE CLIENTES ---")
         if len(todos_los_clientes) == 0:
             print("No hay clientes registrados.")
@@ -117,7 +145,7 @@ while continuar:
             for posicion, un_cliente in enumerate(todos_los_clientes):
                 print(f"[{posicion}] {un_cliente.mostrar_cliente()}")
 
-    elif opcion == 4:
+    elif opcion == 6:
         print("\n--- LISTA DE ENTRENADORES ---")
         if len(todos_los_entrenadores) == 0:
             print("No hay entrenadores registrados.")
@@ -125,7 +153,7 @@ while continuar:
             for posicion, un_entrenador in enumerate(todos_los_entrenadores):
                 print(f"[{posicion}] {un_entrenador.mostrar_entrenador()}")
 
-    elif opcion == 5:
+    elif opcion == 7:
         print("\n--- ASIGNAR CLIENTE A ENTRENADOR ---")
         if len(todos_los_clientes) == 0 or len(todos_los_entrenadores) == 0:
             print("Necesitas clientes y entrenadores en el sistema.")
@@ -145,7 +173,7 @@ while continuar:
 
             entrenador_seleccionado.asignar_cliente(cliente_seleccionado.nombre)
 
-    elif opcion == 6:
+    elif opcion == 8:
         print("\n--- ASIGNAR PLAN A CLIENTE ---")
         if len(todos_los_clientes) == 0:
             print("No hay clientes para asignarles un plan.")
