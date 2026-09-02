@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="marcelorios@liceovvh.cl">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body>
+    <!-- LOGIN -->
+    <section class="pantalla active" id="login">
+
+        <div class="doble">
+
+            <div class="card">
+                <h2>Inicio de Sesión</h2>
+
+                <div class="grupo">
+                    <label>E-mail</label>
+                    <input type="email">
+                </div>
+
+                <div class="grupo">
+                    <label>Contraseña</label>
+                    <input type="password">
+                </div>
+
+                <button onclick="mostrar('dashboard')">
+                    Iniciar Sesión
+                </button>
+            </div>
+
+            <div class="card">
+                <h2>Registro</h2>
+
+                <div class="grupo">
+                    <label>Nombre</label>
+                    <input type="text">
+                </div>
+
+                <div class="grupo">
+                    <label>E-mail</label>
+                    <input type="email">
+                </div>
+
+                <div class="grupo">
+                    <label>Contraseña</label>
+                    <input type="password">
+                </div>
+
+                <div class="grupo">
+                    <label>Conf. Contraseña</label>
+                    <input type="password">
+                </div>
+
+                <button onclick="mostrar('dashboard')">
+                    Registrar
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="pantalla" id="dashboard">
+
+        <div class="contenedor">
+
+            <div class="top">
+                <button onclick="mostrar('nuevo')">
+                    Nuevo Usuario
+                </button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Tipo Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Patricia</td>
+                        <td>patricia@codingdojo.com</td>
+                        <td>Admin</td>
+                        <td class="acciones">
+                            <button onclick="mostrar('editar')">Editar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Andrea</td>
+                        <td>andrea@codingdojo.com</td>
+                        <td>Usuario</td>
+                        <td class="acciones">
+                            <button onclick="mostrar('editar')">Editar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Katya</td>
+                        <td>katya@codingdojo.com</td>
+                        <td>Usuario</td>
+                        <td class="acciones">
+                            <button onclick="mostrar('editar')">Editar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- NUEVO USUARIO -->
+    <section class="pantalla" id="nuevo">
+
+        <div class="formulario">
+
+            <h2>Nuevo Usuario</h2>
+
+            <div class="grupo">
+                <label>Nombre</label>
+                <input type="text">
+            </div>
+
+            <div class="grupo">
+                <label>E-mail</label>
+                <input type="email">
+            </div>
+
+            <div class="grupo">
+                <label>Contraseña</label>
+                <input type="password">
+            </div>
+
+            <div class="grupo">
+                <label>Conf. Contraseña</label>
+                <input type="password">
+            </div>
+
+            <div class="grupo">
+                <label>Tipo Usuario</label>
+
+                <select>
+                    <option>Administrador</option>
+                    <option>Usuario</option>
+                </select>
+            </div>
+
+            <button onclick="mostrar('dashboard')">
+                Crear
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- EDITAR -->
+    <section class="pantalla" id="editar">
+
+        <div class="formulario">
+
+            <h2>Editar Usuario</h2>
+
+            <div class="grupo">
+                <label>Nombre</label>
+                <input type="text" value="Patricia">
+            </div>
+
+            <div class="grupo">
+                <label>E-mail</label>
+                <input type="email" value="patricia@codingdojo.com">
+            </div>
+
+            <div class="grupo">
+                <label>Contraseña</label>
+                <input type="password" value="123456">
+            </div>
+
+            <div class="grupo">
+                <label>Conf. Contraseña</label>
+                <input type="password" value="123456">
+            </div>
+
+            <div class="grupo">
+                <label>Tipo Usuario</label>
+
+                <select>
+                    <option>Administrador</option>
+                    <option>Usuario</option>
+                </select>
+            </div>
+
+            <button onclick="mostrar('dashboard')">
+                Guardar
+            </button>
+
+        </div>
+
+    </section>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

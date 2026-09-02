@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900&display=swap');
+
+/* RESETEO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+.logo{color: #136ff7;display: flex;align-items: center;gap: 10px;}
+.logo svg{width: 28px;height: 28px;}
+.title{display: flex;gap: 10px;}
+.content{display: flex;max-width: 1000px;flex-direction: column;margin: auto;align-items: center;}
+.opciones{display: flex;gap: 10px;}
+.opcion{display: flex;flex-direction: column;min-width: 32%;}
+.tablas{width: 1000px;}
+.tablasDetalles{display: flex;width: 100%;height: 25px;align-items: center; background: #24282d;color: #fff;}
+.tablasDetalles section{padding-left: 10px;font-weight: bold;}
+.tabla{display: flex;width: 100%;align-items: center;}
+.tabla section{display: flex;padding: 8px;border-bottom: #ebf2f5 solid 1px;padding-left: 10px;}
+.caja{box-shadow: 1px 2px 3px 3px #e3e3e7;border-radius: 7px; padding: 10px;margin-bottom: 30px;}
+
+.nombre{min-width: 25%;display: flex;align-items: center;gap: 5px;}
+.tabla .nombre{font-weight: bold;}
+
+.usuarios{min-width: 15%;}
+.tabla .usuarios p{background: #0d6bf5;color: #fff;border-radius: 4px;padding: 2px 4px 2px 4px;font-size: 14px;}
+
+.fundacion{min-width: 25%;}
+.tabla .fundacion{}
+ 
+.pais{min-width: 10%;}
+.tabla .pais p{background: #69727b;color: #fff;border-radius: 4px;padding: 2px 4px 2px 4px; font-size: 14px;}
+
+.detalles{min-width: 10%;}
+.detalles button{border-radius: 5px; border: 1px solid #0d6bf5; background-color: transparent;width: 25px;height: 25px;display: flex;justify-content: center;align-items: center;}
+.detalles i{color: #0d6bf5;width: 13px;height: 13px;} 
+
+
+
+.nombre i{padding: 6px; border-radius: 25px;color: #fff;display: flex;justify-content: center;align-items: center;}
+
+.bi-discord{background-color: #0d6bf5;}
+.bi-instagram{background: linear-gradient(45deg,
+    #dd6e3a 0%, #dd6e3a 10%,
+    #db633a 10%, #db633a 20%,
+    #d8543c 20%, #d8543c 25%,
+    #dc4647 25%, #dc4647 30%,
+    #d33440 30%, #d33440 40%,
+    #d02645 40%, #d02645 60%,
+    #c92453 60%, #c92453 80%,
+    #c12162 80%, #c12162 90%,
+    #c1276b 90%, #c1276b 100%
+    );}
+.bi-netflix{background-color: #db0d1b;}
+.bi-spotify{background-color: #1db558;}
+.bi-tiktok{background-color: #010306;}
+.bi-twitch{background-color: #6040a1;}
+.bi-youtube{background-color: #f30205;}
+#plataformas-mostradas{justify-self: end;margin-top: 25px;}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <!-- Definimos la máscara de recorte -->
+    <mask id="perforacion">
+      <!-- Todo lo que es blanco se queda (el cuerpo sólido) -->
+      <rect x="9" y="3" width="6" height="18" rx="1" fill="#ffffff" />
+      
+      <!-- Todo lo que es negro cala el diseño y lo hace transparente -->
+      <!-- Líneas internas -->
+      <line x1="12" y1="7" x2="15" y2="7" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+      <line x1="12" y1="12" x2="15" y2="12" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+      <line x1="12" y1="17" x2="15" y2="17" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+    </mask>
+  </defs>
+
+  <!-- Dibujamos la regla aplicando la máscara con el color gris oficial -->
+  <rect x="9" y="3" width="6" height="18" rx="1" fill="#5a6873" mask="url(#perforacion)" />
+</svg>
+

@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900&display=swap');
+
+/* RESETEO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+/* Tipo Pokemon */
+:root {
+    --fuego: #e88037;
+    --fuegoTexto: #fff;
+    --veneno: #9b42a0;
+    --venenoTexto: #fff;
+    --hada: #e499ad;
+    --hadaTexto: #fff;
+    --planta: #76c355;
+    --plantaTexto: #fff;
+    --electrico: #eecc38;
+    --electricoTexto: #000;
+    --agua: #6b91ee;
+    --aguaTexto: #fff;
+    --normal: #a3a67b;
+    --normalTexto: #fff;
+    --fantasma: #735c9a;
+    --fantasmaTexto: #fff;
+    --tierra: #d6ba69;
+    --tierraTexto: #000;
+    --roca: #b8a040;
+    --rocaTexto: #fff;
+
+    --poderColor: #3a4cc5;
+}
+
+/* Casilla Pokemon */
+.pokemones {
+    display: flex;
+    gap: 15px;
+}
+
+.pokemon {
+    display: flex;
+    min-width: 333px    ;
+    flex-direction: column;
+    justify-content: start;
+    flex: 0 0 calc((100% - (16px * 2)) / 3);
+    align-items: center;
+    box-shadow: 2px 3px 3px 3px #d1d3d4;
+    border-radius: 10px;
+    gap: 3px;
+}
+
+.pokemon .pokemonImagen {
+    width: 100px;
+}
+
+.pokemon .img {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,
+            #e9eef3 0%, #e9eef3 11.11%,
+            #e2e7ee 11.11%, #e2e7ee 22.22%,
+            #dfe3ea 22.22%, #dfe3ea 33.33%,
+            #d6ddea 33.33%, #d6ddea 44.44%,
+            #d2dbe8 44.44%, #d2dbe8 55.55%,
+            #cbd4e3 55.55%, #cbd4e3 66.66%,
+            #c4cddb 66.66%, #c4cddb 77.77%,
+            #bcc7d9 77.77%, #bcc7d9 88.88%,
+            #b2bfd3 88.88%, #b2bfd3 100%
+        );
+    width: 100%;
+    border-start-start-radius: 10px;
+    border-start-end-radius: 10px;
+    padding-block: 10px;
+}
+
+.pokemon .numero {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: auto;
+    background-color: #50545a;
+    color: #e2e7ee;
+    font-weight: bold;
+    border-radius: 15px;
+    padding-inline: 8px;
+    padding-block: 3px;
+}
+
+.infoNormal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoNormal .tipo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.tipo p {
+    padding-inline: 7px;
+    padding-block: 3px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.infoAvanzada {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    padding-inline: 50px;
+    padding-block: 10px 30px;
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+    border: 2px solid #dbdde0;
+    width: 100%;
+}
+
+.boton button {
+    font-weight: bold;
+    color: #6b91ee;
+    background-color: transparent;
+    border: 2px solid #6b91ee;
+    width: 90%;
+    padding-inline: 20px;
+    padding-block: 5px;
+    margin-block: 5px;
+    border-radius: 5px;
+}
+
+.poder {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.infoAtomica {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    gap: 5px;
+    color: #5a6873;
+    font-size: 16px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.icon img {
+    width: 20px;
+}
+
+/* Pagina Pokemon */
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    color: #3a4cc5;
+}
+
+.logo p {
+    color: #000;
+}
+.iconPokeball{
+    width: 30px;
+}
+.logo h1{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.opciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.opciones button {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 3px;
+    border: 0;
+    gap: 5px;
+}
+.opciones a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold
+}
+.opciones img{
+    width: 15px;
+    fill: #fff;
+    stroke: #fff;
+}
+
+section {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 40%;
+    margin-block: 30px;
+}
+
+
+.pista-flex {
+    display: flex;
+    width: 100%;
+    height: 15px;
+    background-color: #e2e8f0;
+    border-radius: 7px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.relleno-activo {
+    background: var(--poderColor);
+    transition: flex-grow 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+}
+
+.espacio-vacio {
+    background: transparent;
+}
+
+/* Error Pokemon */
+
+.error h1{
+    font-size: 45px;
+}
+.error p{
+    text-align: center;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 80px;
+}
+.error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    gap: 10px;
+    box-shadow: 2px 3px 3px 3px #d1d3d4;
+    border-radius: 10px;
+    padding: 10px;
+}
+.error .problema h3{
+    font-size: 25px;
+    color: #d53749;
+}
+.error .mensaje{
+    text-decoration:underline;
+}
+.error a{
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    align-items: center;
+    background: #1571fb;
+    color: #fff;
+    padding: 7px;
+    border-radius: 7px;
+    text-decoration: none;
+}
+.error a img{
+    width: 15px;
+    fill: #fff;
+}

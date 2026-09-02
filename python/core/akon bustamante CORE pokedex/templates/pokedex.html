@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+
+    <!-- Enlazar una hoja de estilo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <main>
+        <article class="content">
+            <header class="logo">
+                <h1><img src="/static/icons/pokeball.png" class="iconPokeball"> Pokedex</h1>
+                <p>Todos los pokemon</p>
+            </header>
+            <section class="opciones">
+                <button style="background-color: #0f6bf4;">
+                    <img src="/static/icons/burger-icon.svg" class="icon">
+                    <a href="/pokemon"> Ver todos</a>
+                </button>
+                <button style="background-color: #198152;">
+                    <img src="/static/icons/hopper.svg" class="icon">
+                    <a href="/pokemon/cantidad/5"> Ver 5 primeros</a>
+                </button>
+            </section>
+            <section class="pokemones">
+                {% for pokemon in pokedex %}
+                <div class="pokemon">
+                    <div class="img">
+                        <img src="/static/image/{{ pokemon.imagen }}" class="pokemonImagen">
+                        <p class="numero">#{{ pokemon.id }}</p>
+                    </div>
+                    <div class="infoNormal">
+                        <p class="name">{{pokemon.nombre}}</p>
+                        <div class="tipo">
+                            {% for tipo in pokemon.tipo %}
+                            <p
+                                style="background-color: var(--{{tipo.lower()}});color:var(--{{tipo.lower()}}Texto);font-weight:bold;">
+                                {{ tipo }}
+                            </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="poder">
+                        <div class="icon"><img src="/static/icons/ray.svg" class="icon"> Poder</div>
+                        <div class="pista-flex">
+                            <div class="relleno-activo" style="flex-grow: {{ pokemon.flex_relleno }};">{{ pokemon.poder }}</div>
+                            <div class="espacio-vacio" style="flex-grow: {{ pokemon.flex_vacio }};"></div>
+                        </div>
+                    </div>
+                    <div class="infoAvanzada">
+                        <div class="infoAtomica">
+                            <div class="icon"><img src="/static/icons/ruler.svg" class="icon"> Altura</div>
+                            {{ pokemon.altura }}
+                        </div>
+                        <div class="infoAtomica">
+                            <div class="icon"><img src="/static/icons/mass.svg" class="icon"> Peso</div>
+                            {{ pokemon.peso }}
+                        </div>
+                    </div>
+                    <div class="boton"><button>Ver detalles</button></div>
+                </div>
+                {% endfor %}
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

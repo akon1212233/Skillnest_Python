@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Digitales</title>
+
+    <!-- Enlazar una hoja de estilo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- BOOTSTRAP -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <!-- JINJA CONTROLS  -->
+    <!-- { {TEXT} } -->
+    <!-- { %CONTROL PYTHON% } -->
+    <!-- {#COMMENTARY#} -->
+
+    <div class="content">
+        <header>
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
+  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"/>
+</svg><h1>Plataformas digitales</h1>
+            </div>
+            <p>Visualizacion de datos de las principales plataformas digitales</p>
+        </header>
+        <main>
+            <section class="filtro caja">
+                <div class="title">
+                    <img src="" alt="icontolva">
+                    <h3>Filtros y Ordenamiento</h3>
+                </div>
+                <div class="opciones">
+                    <div class="opcion">
+                    <label for="filtro">Filtrar por pais:</label>
+                    <select name="filtro" id="filtro">
+                        <option value="todos">Todos los paises</option>
+                        {% for pais in paises %}
+                            <option value="{{ pais }}">{{ pais }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="opcion">
+                    <label for="orden">Ordenar por:</label>
+                    <select name="orden" id="orden">
+                        {% for orden in ordenes %}
+                        <option value="{{ orden.lower() }}">{{ orden }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="opcion">
+                    <label for="direccion">Direccion:</label>
+                    <select name="direccion" id="direccion">
+                        <option value="upper">Ascendente</option>
+                        <option value="lower">Descendente</option>
+                    </select>
+                </div>
+                </div>
+            </section>
+            <section class="tablas caja">
+                <div class="tablasDetalles">
+                    {% for detalle in ordenes %}
+                        <section class="{{detalle.lower()}}">{{ detalle }}</section>
+                    {% endfor %}
+                </div>
+                {% for tabla in datos %}
+                    <div class="tabla">
+                        <section class="{{ ordenes[0].lower() }}">
+                            <i class="bi bi-{{ tabla.nombre.lower() }}"></i>
+                            <p>{{ tabla.nombre }}</p>
+                        </section>
+                        <section class="{{ ordenes[1].lower() }}"><p>{{ tabla.usuarios }}</p></section>
+                        <section class="{{ ordenes[2].lower() }}"><p>{{ tabla.fundado }}</p></section>
+                        <section class="{{ ordenes[3].lower() }}"><p>{{ tabla.pais }}</p></section>
+                        <section class="{{ ordenes[4].lower() }}"><button><i class="bi bi-info-circle"></i></button></section>
+                    </div>
+                {% endfor %}
+                <p id="plataformas-mostradas"> Mostrando {{ datos | length }} plataformas</p>
+            </section>
+        </main>
+        <footer>
+            
+        </footer>
+    </div>
+</body>
+
+</html>

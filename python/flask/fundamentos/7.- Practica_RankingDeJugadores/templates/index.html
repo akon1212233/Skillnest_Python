@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ranking de Jugadores</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: {% if color %}{{ color }}{% else %}#f4f4f4{% endif %};
+           text-align: center;
+       }
+       h1 {
+           color: #333;
+       }
+       .ranking {
+           display: inline-block;
+           background: white;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+       }
+       ul {
+           list-style: none;
+           padding: 0;
+       }
+       li {
+           font-size: 18px;
+           margin: 10px 0;
+           padding: 8px;
+           border-bottom: 1px solid #ddd;
+       }
+       .top {
+           font-weight: bold;
+           color: gold;
+       }
+   </style>
+</head>
+
+<body>
+   <h1> Ranking de Jugadores </h1>
+   <div class="ranking">
+       <ul>
+           {% for jugador in jugadores %}
+               <li {% if loop.index == 1 %} class="top" {% endif %}>
+                   {{ loop.index }}. {{ jugador.nombre }} - {{ jugador.puntaje }} puntos
+               </li>
+           {% endfor %}
+       </ul>
+   </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlazar una hoja de estilo CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <title>Pokedex</title>
+</head>
+
+<body>
+    <main>
+        <article class="content">
+            <section class="error">
+                <header class="logo"><h1>¡Oh no!</h1></header>
+                {% if not mensaje.isdigit() %}
+                <p>No pudimos encontrar informacion sobre el pokemon "<strong class="mensaje">{{ mensaje }}</strong>" en nuestra pokedex.</p>
+                {% else %}
+                <p>No pudimos encontrar informacion sobre el pokemon numero "<strong class="mensaje">{{ mensaje }}</strong>" en nuestra pokedex.</p>
+                {% endif %}
+                <div class="problema">
+                    <img src="" class="errorIcon">
+                    <h3>pokemon no encontrado</h3>
+                </div>
+                <p>tal vez este pokemon aun no ha sido descubierto, o quizas has escrito mal su nombre.</p>
+                <a href="/pokemon"> <img src="/static/icons/home.svg" alt="">Volver a la pokedex</a>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

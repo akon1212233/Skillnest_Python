@@ -1,0 +1,16 @@
+<h1>Bienvenido a tu plantilla</h1>
+   <p>Canción: {{ cancion }}</p>
+   <p>Repeticiones: {{ repite }}</p>
+
+   {# repetimos la canción la cantidad de veces indicada #}
+   {% for x in range(repite): %}
+
+       <h3>{{ cancion }}</h3>
+
+   {% endfor %}
+   {# revisamos si en la canción incluyen la palabra "macarena" #}
+   {% if "macarena" in cancion: %}
+
+       <h4>¡Eh macarena!</h4>
+
+   {% endif %}
