@@ -11,22 +11,22 @@ jugadores = [
    {"nombre": "UltraNoob", "puntaje": 3000}
 ]
 
-
+jugadoresOrdenado = list(sorted(jugadores, key=lambda x: x["puntaje"], reverse=True))
 # Ruta para mostrar el ranking de jugadores
 @app.route("/ranking")
 def raiz():
-   return render_template("index.html",jugadores=list(jugadores))
+   return render_template("index.html",jugadores=list(jugadoresOrdenado))
 # Ruta para mostrar un número limitado de jugadores
 @app.route("/ranking/<int:limite>")
 def rankingLimite(limite):
-   newList = jugadores[:limite]
+   newList = jugadoresOrdenado[:limite]
    
    return render_template("index.html",jugadores= newList)
    pass
 # Ruta para personalizar el color del ranking
 @app.route("/ranking/<int:limite>/<string:color>")
 def rankingLimiteColor(limite,color):
-   newList = jugadores[:limite]
+   newList = jugadoresOrdenado[:limite]
    
    return render_template("index.html",jugadores= newList,color= color)
    pass

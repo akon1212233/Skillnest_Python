@@ -1,12 +1,12 @@
 # python -m pipenv install flask
 
-from flask import Flask, render_template
+from flask import Flask
 
 app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return ""
+    return "Bienvenido al curso de Flask!"
 
 @app.route("/saludar/<nombre>")
 def saludar(nombre):
