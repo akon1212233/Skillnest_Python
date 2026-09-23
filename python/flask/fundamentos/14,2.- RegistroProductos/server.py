@@ -34,7 +34,7 @@ def createProduct():
 
 @app.route("/resultado")
 def products():
-    return render_template("resultado.html",products=products)
+    return render_template("resultado.html",products=productsVar)
 
 @app.route("/ayuda")
 def help():

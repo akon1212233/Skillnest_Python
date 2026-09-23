@@ -1,0 +1,132 @@
+{% extends "index.html" %}
+
+{% block title %}
+Centro de Ayuda - Conceptos de Flask
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-xl-10">
+        
+        <!-- Encabezado Principal -->
+        <header class="text-center mb-5">
+            <h1 class="display-5 fw-bold text-dark">
+                <i class="bi bi-question-circle-fill text-primary me-2"></i>Centro de Ayuda
+            </h1>
+            <p class="text-muted fs-5">Aprende los fundamentos del patrón de desarrollo web Post → Redirect → Get (PRG) en Flask.</p>
+        </header>
+
+        <!-- Glosario Rápido de Conceptos (Bootstrap Table) -->
+        <section class="card shadow-sm border-0 mb-5">
+            <div class="card-header bg-dark text-white p-3">
+                <h4 class="mb-0 fs-5"><i class="bi bi-bookmark-star me-2"></i>Glosario de Conceptos Aprendidos</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" style="width: 25%;">Concepto</th>
+                            <th scope="col">Función / Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge bg-primary fs-6">GET</span></td>
+                            <td>Solicitar o recuperar de forma segura una página o recurso desde el servidor [1].</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-success fs-6">POST</span></td>
+                            <td>Enviar información de forma activa al servidor (ej. datos de un formulario) [1].</td>
+                        </tr>
+                        <tr>
+                            <td><code>request.form</code></td>
+                            <td>Diccionario especial de Flask para capturar los datos enviados mediante un método POST [1].</td>
+                        </tr>
+                        <tr>
+                            <td><code>redirect()</code></td>
+                            <td>Instrucción que ordena al navegador del usuario realizar una nueva petición hacia otra ruta diferente [1].</td>
+                        </tr>
+                        <tr>
+                            <td><code>render_template()</code></td>
+                            <td>Procesa y dibuja una plantilla HTML combinando lógica de Python con Jinja2 [1].</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bloques de Explicación Detallada (Cards) -->
+        <section class="row g-4 mb-5">
+            
+            <!-- Pregunta 1 -->
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-primary d-flex align-items-center gap-2">
+                            <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                            ¿Por qué usar redirect() tras un POST?
+                        </h3>
+                        <p class="card-text text-muted">
+                            Si renderizas una plantilla de manera directa luego de un <code>POST</code> y el usuario actualiza la página (F5), el navegador reenvía los datos. En apps reales, esto genera **registros, cobros o pedidos duplicados**.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-primary d-flex align-items-center gap-2">
+                            <i class="bi bi-arrow-left-right"></i>
+                            Render vs Redirect
+                        </h3>
+                        <p class="card-text text-muted">
+                            <code>render_template()</code> procesa y muestra el HTML en la ruta actual. En cambio, <code>redirect()</code> le exige al navegador hacer una petición completamente nueva (tipo <code>GET</code>) hacia una URL distinta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-primary d-flex align-items-center gap-2">
+                            <i class="bi bi-trash3-fill text-danger"></i>
+                            ¿Por qué request.form queda vacío?
+                        </h3>
+                        <p class="card-text text-muted">
+                            Porque una redirección inicia un ciclo de solicitud nuevo e independiente. Los datos del formulario viajan en la petición <code>POST</code> inicial, pero no se transportan automáticamente al posterior viaje en formato <code>GET</code>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 (El gran problema) -->
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm border-start border-primary border-4">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-dark d-flex align-items-center gap-2">
+                            <i class="bi bi-database-fill-lock text-primary"></i>
+                            El problema pendiente
+                        </h3>
+                        <p class="card-text text-muted">
+                            Como las solicitudes web no guardan memoria por defecto, requerimos mecanismos externos para transferir información entre rutas tras un desvío (como el nombre del producto). Esto se resolverá implementando <strong>persistencia de datos</strong> (sesiones o bases de datos).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Botón de retorno rápido -->
+        <div class="text-center mb-4">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-dark px-4 py-2">
+                <i class="bi bi-arrow-left me-2"></i>Volver al Formulario de Registro
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
