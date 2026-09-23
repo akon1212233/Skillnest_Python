@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Renderizando Listas</title>
+
+</head>
+
+<body>
+
+    <h1>Números Aleatorios</h1>
+
+    {% for numero in numeros %}
+
+        <p>{{ numero }}</p>
+
+    {% endfor %}
+
+    <hr>
+
+    <h1>Listado de Estudiantes</h1>
+
+    <ul>
+
+        {% for estudiante in estudiantes %}
+
+            <li>
+                {{ loop.index }}. 
+                {{ estudiante["nombre"] }}
+                -
+                {{ estudiante["edad"] }}
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</body> 
+
+</html>

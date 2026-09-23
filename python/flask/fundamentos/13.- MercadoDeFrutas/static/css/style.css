@@ -1,0 +1,291 @@
+/* ==========================================================
+MERCADO DE FRUTAS
+Hoja de estilos principal
+========================================================== */
+
+/* ==========================================================
+VARIABLES
+========================================================== */
+:root {
+    --color-principal: #198754;
+    --color-principal-hover: #157347;
+    --color-fondo: #f4f6f8;
+    --color-texto: #333;
+    --color-blanco: #ffffff;
+}
+
+/* ==========================================================
+ESTILOS GENERALES
+========================================================== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+}
+/* ==========================================================
+NAVBAR
+========================================================== */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.navbar-brand {
+    font-size: 1.4rem;
+}
+.nav-link {
+    transition: 0.2s ease;
+}
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================
+HERO
+========================================================== */
+.hero {
+    background: linear-gradient(
+        135deg,
+        #198754,
+        #157347
+    );
+    padding: 70px 20px;
+}
+.hero h1 {
+    font-weight: bold;
+}
+.hero p {
+    font-size: 20px;
+}
+
+/* ==========================================================
+TARJETAS GENERALES
+========================================================== */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.card-header {
+    font-weight: bold;
+}
+.card-footer {
+    border-top: none;
+}
+
+/* ==========================================================
+TARJETAS DE FRUTAS
+========================================================== */
+.fruta-card {
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.fruta-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================
+CONTENEDOR DE IMÁGENES
+========================================================== */
+/*
+   Todas las frutas utilizan el mismo espacio.
+   Esto evita que una imagen grande deforme
+   el tamaño de la tarjeta.
+*/
+.imagen-fruta {
+    width: 100%;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* ==========================================================
+IMÁGENES DE FRUTAS
+========================================================== */
+.imagen-fruta img {
+    max-width: 85%;
+    max-height: 190px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* ==========================================================
+EFECTO HOVER DE IMÁGENES
+========================================================== */
+.fruta-card:hover .imagen-fruta img {
+    transform: scale(1.08);
+}
+
+/* ==========================================================
+INFORMACIÓN DE PRODUCTOS
+========================================================== */
+.card-title {
+    font-weight: bold;
+}
+.card-text {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ==========================================================
+FORMULARIOS
+========================================================== */
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+}
+.form-control:focus {
+    border-color: var(--color-principal);
+    box-shadow:
+        0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+
+/* ==========================================================
+INPUTS DE CANTIDAD
+========================================================== */
+input[type="number"] {
+    text-align: center;
+}
+
+/* ==========================================================
+BOTONES
+========================================================== */
+.btn {
+    border-radius: 10px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+TABLAS
+========================================================== */
+.table {
+    margin-bottom: 0;
+}
+.table thead {
+    font-size: 15px;
+}
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+.table tbody tr:hover {
+    background-color: #f3fff7;
+}
+
+/* ==========================================================
+IMÁGENES DEL CHECKOUT
+========================================================== */
+.checkout-fruta {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+/* ==========================================================
+RESUMEN DEL PEDIDO
+========================================================== */
+.order-summary {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* ==========================================================
+ALERTAS
+========================================================== */
+.alert {
+    border-radius: 12px;
+}
+
+/* ==========================================================
+BADGES
+========================================================== */
+.badge {
+    font-size: 13px;
+    padding: 8px 12px;
+}
+
+/* ==========================================================
+FOOTER
+========================================================== */
+footer {
+    margin-top: 80px;
+}
+
+/* ==========================================================
+RESPONSIVE — TABLETS
+========================================================== */
+@media (max-width: 992px) {
+    .hero {
+        padding: 55px 20px;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+}
+
+/* ==========================================================
+RESPONSIVE — CELULARES
+========================================================== */
+@media (max-width: 768px) {
+    .hero {
+        padding: 45px 15px;
+    }
+    .hero h1 {
+        font-size: 30px;
+    }
+    .hero p {
+        font-size: 17px;
+    }
+    .imagen-fruta {
+        height: 210px;
+    }
+    .imagen-fruta img {
+        max-height: 170px;
+    }
+}
+
+/* ==========================================================
+RESPONSIVE — CELULARES PEQUEÑOS
+========================================================== */
+@media (max-width: 576px) {
+    .hero{
+        padding: 40px 15px;
+    }
+    .hero h1{
+        font-size: 26px;
+    }
+    .hero p{
+        font-size: 16px;
+    }
+    .navbar-brand{
+        font-size: 1.15rem;
+    }
+    .imagen-fruta{
+        height: 200px;
+    }
+    .imagen-fruta img{
+        max-width: 80%;
+        max-height: 160px;
+    }
+    .btn-lg{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

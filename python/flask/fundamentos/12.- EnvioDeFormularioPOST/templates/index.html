@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Formulario de Usuarios</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Hoja de estilos -->
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h3 class="text-center">
+
+                        <i class="bi bi-person-plus-fill"></i>
+
+                        Crear Usuario
+
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form
+                        action="/crear_usuario"
+                        method="POST">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Nombre
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="nombre"
+                                class="form-control"
+                                placeholder="Ingrese su nombre"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Correo Electrónico
+
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="correo@ejemplo.com"
+                                required>
+
+                        </div>
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Edad
+
+                            </label>
+
+                            <input
+                                type="number"
+                                name="edad"
+                                class="form-control"
+                                placeholder="18"
+                                min="1"
+                                required>
+
+                        </div>
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Ciudad
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="ciudad"
+                                class="form-control"
+                                placeholder="Buenos Aires"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Telefono
+
+                            </label>
+                            
+                            <input
+                                type="text"
+                                name="telefono"
+
+                                class="form-control"
+                                placeholder="+56 9 1234 5678"
+                                required>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-success w-100">
+
+                            <i class="bi bi-send-fill"></i>
+
+                            Crear Usuario
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

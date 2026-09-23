@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Crear Usuario</title>
+
+</head>
+
+<body>
+
+    <h1>Crear Usuario</h1>
+
+    <form
+        action="{{ url_for('crear_usuario') }}"
+        method="POST">
+
+        <!-- Nombre -->
+
+        <label for="nombre">
+
+            Nombre:
+
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required>
+
+        <br><br>
+
+
+        <!-- Email -->
+
+        <label for="email">
+
+            Email:
+
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required>
+
+        <br><br>
+
+
+        <!-- Botón de envío -->
+
+        <button type="submit">
+
+            Crear Usuario
+
+        </button>
+
+    </form>
+
+</body>
+
+</html>

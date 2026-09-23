@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Catálogo de Frutas
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<!-- ==================================================
+     ENCABEZADO
+=================================================== -->
+
+<header class="hero text-center text-white">
+
+    <div class="container">
+
+        <h1 class="display-5 fw-bold">
+
+            🍎 Catálogo de Frutas
+
+        </h1>
+
+        <p class="lead">
+
+            Descubre nuestras frutas frescas disponibles.
+
+        </p>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     CATÁLOGO
+=================================================== -->
+
+<div class="container my-5">
+
+
+    <div class="row g-4">
+
+
+        <!-- ==================================================
+             RECORRER FRUTAS
+        =================================================== -->
+
+        {% for fruta in frutas %}
+
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+
+
+            <div class="card fruta-card h-100 shadow-sm">
+
+
+                <!-- ==================================================
+                     IMAGEN
+                =================================================== -->
+
+                <div class="imagen-fruta">
+
+
+                    <img
+
+                        src="{{ url_for(
+                            'static',
+                            filename='images/' + fruta.imagen
+                        ) }}"
+
+                        alt="{{ fruta.nombre }}"
+
+                    >
+
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     INFORMACIÓN
+                =================================================== -->
+
+                <div class="card-body text-center">
+
+
+                    <h4 class="card-title">
+
+                        {{ fruta.nombre }}
+
+                    </h4>
+
+
+                    <h5 class="text-success fw-bold">
+
+                        ${{ "%.2f"|format(fruta.precio) }}
+
+                    </h5>
+
+
+                    <p class="card-text">
+
+                        {{ fruta.descripcion }}
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     FOOTER DE LA TARJETA
+                =================================================== -->
+
+                <div class="card-footer bg-white border-0 text-center pb-4">
+
+
+                    <a
+                        href="{{ url_for('index') }}"
+                        class="btn btn-success"
+                    >
+
+                        <i class="bi bi-cart-plus-fill"></i>
+
+                        Comprar
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     BOTÓN INFERIOR
+=================================================== -->
+
+<div class="container text-center mb-5">
+
+
+    <a
+        href="{{ url_for('index') }}"
+        class="btn btn-success btn-lg"
+    >
+
+        <i class="bi bi-cart-fill"></i>
+
+        Realizar una Compra
+
+    </a>
+
+
+</div>
+
+
+{% endblock %}

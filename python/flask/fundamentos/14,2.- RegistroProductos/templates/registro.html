@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+
+{% block title %}
+Registro
+{% endblock %}
+
+{% block content %}
+<header class="hero text-center text-dark">
+    <div class="container">
+        <h1 class="display-6 fw-bold">
+            Registro de productos
+        </h1>
+    </div>
+</header>
+
+<form action="/registrar" method="POST">
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card-body">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+        <label class="form-label">Nombre del producto</label>
+        <input 
+            type="text"
+            name="productName"
+            class="form-control"
+            placeholder="Monitor"
+            required>
+    </div>
+    <div class="card-body">
+        <label class="form-label">Precio del producto</label>
+        <input 
+            type="number"
+            name="price"
+            class="form-control"
+            placeholder="$900"
+            required>
+    </div>
+    <div class="card-body">
+        <label class="form-label">Nombre del producto</label>
+        <input 
+            type="text"
+            name="category"
+            class="form-control"
+            placeholder="Electronica"
+            required>
+    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="bg-primary text-white" type="submit" value="Subir producto">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
