@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Mascotas</title>
+</head>
+<body>
+    <article>
+        <h1>Listado de Mascotas</h1>
+
+    {% if mascotas %}
+        <ul>
+            {% for mascota in mascotas %}
+                <li>
+                    <strong>
+                        {{ mascota.nombre }}
+                    </strong>
+                    -
+                    {{ mascota.tipo }}
+                    -
+                    {{ mascota.color }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>
+            No existen mascotas registradas.
+        </p>
+
+    {% endif %}
+    </article>
+    <article>
+        <h1>Listado de Usuarios</h1>
+
+    {% if usuarios %}
+        <ul>
+            {% for usuario in usuarios %}
+                <li>
+                    <strong>
+                        {{ usuario.nombre }}
+                    </strong>
+                    -
+                    {{ usuario.email }}
+                    -
+                    {{ usuario.edad }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>
+            No existen usuarios registradas.
+        </p>
+    {% endif %}
+    </article>
+</body>
+</html>

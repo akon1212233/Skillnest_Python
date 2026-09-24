@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Futuro Revelado</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #2b1055; color: #fff; min-height: 100vh; display: flex; align-items: center; }
+        .card-destiny { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 text-center">
+                <div class="card card-destiny p-5 shadow-lg">
+                    <h2 class="fw-bold mb-4 text-warning">⭐ Tu Destino ha sido Escrito ⭐</h2>
+                    
+                    <p class="fs-4 mb-4 lh-base">
+                        {{ prediccion }}
+                    </p>
+                    
+                    <hr class="border-secondary mb-4">
+                    
+                    <p class="text-light-50 small mb-4">
+                        Los datos de <strong>{{ nombre }}</strong> han sido procesados y resguardados en la sesión activa del servidor.
+                    </p>
+                    
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-warning fw-bold px-4 py-2">
+                        🔄 Intentar otra vez
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Adivina el Número</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="pagina">
+
+    <!-- ==================================================
+         TARJETA PRINCIPAL
+    =================================================== -->
+
+    <main class="juego">
+
+        <!-- Encabezado -->
+
+        <header class="juego-header">
+
+            <div class="icono">
+
+                🎯
+
+            </div>
+
+            <h1>Adivina el Número</h1>
+
+            <p>
+
+                Encuentra el número secreto entre 1 y 10
+
+            </p>
+
+        </header>
+
+
+        <!-- ==================================================
+             INFORMACIÓN DEL JUEGO
+        =================================================== -->
+
+        <section class="contenido">
+
+            <div class="alerta">
+
+                ℹ️
+
+                {{ mensaje }}
+
+            </div>
+
+
+            <!-- Intentos -->
+
+            <div class="intentos">
+
+                Intentos:
+
+                <strong>{{ intentos }}</strong>
+
+            </div>
+
+
+            <!-- ==================================================
+                 NÚMEROS RÁPIDOS
+            =================================================== -->
+
+            <div class="numeros">
+
+                {% for numero in range(1, 11) %}
+
+                <button
+                    type="button"
+                    class="numero"
+                    onclick="document.getElementById('numero').value = {{ numero }}"
+                >
+
+                    {{ numero }}
+
+                </button>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ==================================================
+                 FORMULARIO
+            =================================================== -->
+
+            <form
+                action="{{ url_for('adivinar') }}"
+                method="POST"
+            >
+
+                <label for="numero">
+
+                    Tu elección:
+
+                </label>
+
+
+                <input
+                    type="number"
+                    id="numero"
+                    name="numero"
+                    min="1"
+                    max="10"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="btn btn-adivinar"
+                >
+
+                    🔍 Adivinar
+
+                </button>
+
+            </form>
+
+
+            <!-- ==================================================
+                 RESULTADO
+            =================================================== -->
+
+            {% if resultado == "correcto" %}
+
+                <div class="resultado correcto">
+
+                    🎉 ¡Has acertado!
+
+                </div>
+
+            {% elif resultado == "mayor" %}
+
+                <div class="resultado mayor">
+
+                    ⬆️ El número secreto es mayor.
+
+                </div>
+
+            {% elif resultado == "menor" %}
+
+                <div class="resultado menor">
+
+                    ⬇️ El número secreto es menor.
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- ==================================================
+                 REINICIAR
+            =================================================== -->
+
+            <a
+                href="{{ url_for('reiniciar') }}"
+                class="btn btn-reiniciar"
+            >
+
+                ↻ Reiniciar Juego
+
+            </a>
+
+        </section>
+
+
+        <!-- ==================================================
+             PIE DEL JUEGO
+        =================================================== -->
+
+        <footer class="juego-footer">
+
+            ¡Intenta adivinar el número secreto
+            en la menor cantidad de intentos!
+
+        </footer>
+
+    </main>
+
+
+    <!-- ==================================================
+         REGLAS
+    =================================================== -->
+
+    <section class="reglas">
+
+        <h2>
+
+            📋 Reglas del juego
+
+        </h2>
+
+        <ul>
+
+            <li>
+
+                Se ha generado un número aleatorio
+                entre 1 y 10.
+
+            </li>
+
+            <li>
+
+                Debes intentar adivinar cuál es
+                ese número.
+
+            </li>
+
+            <li>
+
+                Después de cada intento recibirás
+                una pista.
+
+            </li>
+
+            <li>
+
+                ¡Trata de adivinarlo en la menor
+                cantidad de intentos!
+
+            </li>
+
+        </ul>
+
+    </section>
+
+</div>
+
+</body>
+
+</html>
