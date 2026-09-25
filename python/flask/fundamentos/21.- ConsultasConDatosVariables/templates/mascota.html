@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Si es una lista, usamos el tipo de la primera mascota, si no, el nombre de la mascota individual -->
+    <title>
+        {% if mascota is iterable and mascota is not string and mascota|length > 0 %}
+            Mascotas: {{ mascota[0].tipo }}
+        {% else %}
+            {{ mascota.nombre }}
+        {% endif %}
+    </title>
+</head>
+
+<body>
+
+    <!-- CASO 1: Si lo que llegó es una LISTA de mascotas (Búsqueda por Tipo) -->
+    {% if mascota is iterable and mascota is not string and mascota|length > 0 and mascota[0].id is defined %}
+        <h1>Mascotas encontradas</h1>
+        
+        {% for m in mascota %}
+            <div style="border: 1px solid #ccc; margin-bottom: 15px; padding: 15px; border-radius: 5px;">
+                <h2>{{ m.nombre }}</h2>
+                <p><strong>ID:</strong> {{ m.id }}</p>
+                <p><strong>Tipo:</strong> {{ m.tipo }}</p>
+                <p><strong>Color:</strong> {{ m.color }}</p>
+                <p><strong>Fecha de creación:</strong> {{ m.created_at }}</p>
+                <p><strong>Última actualización:</strong> {{ m.updated_at }}</p>
+            </div>
+        {% endfor %}
+
+    <!-- CASO 2: Si llegó una Sola Mascota (Búsqueda por ID) -->
+    {% else %}
+        <h1>{{ mascota.nombre }}</h1>
+        <p><strong>ID:</strong> {{ mascota.id }}</p>
+        <p><strong>Tipo:</strong> {{ mascota.tipo }}</p>
+        <p><strong>Color:</strong> {{ mascota.color }}</p>
+        <p><strong>Fecha de creación:</strong> {{ mascota.created_at }}</p>
+        <p><strong>Última actualización:</strong> {{ mascota.updated_at }}</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('index') }}">Volver al listado</a>
+
+</body>
+</html>
