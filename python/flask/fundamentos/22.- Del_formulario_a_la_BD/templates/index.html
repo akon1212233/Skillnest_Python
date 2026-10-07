@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mascotas</title>
+
+</head>
+
+<body>
+
+    <!-- ==================================================
+         LISTADO DE MASCOTAS
+    =================================================== -->
+
+    <h1>Las mascotas</h1>
+
+
+    {% if mascotas %}
+
+        {% for mascota in mascotas %}
+
+            <p>
+
+                <b>Nombre:</b>
+                {{ mascota.nombre }}
+
+                <br>
+
+                <b>Tipo:</b>
+                {{ mascota.tipo }}
+
+                <br>
+
+                <b>Color:</b>
+                {{ mascota.color }}
+
+            </p>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+
+            No existen mascotas registradas.
+
+        </p>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         FORMULARIO
+    =================================================== -->
+
+    <hr>
+
+
+    <h2>Agregar una mascota</h2>
+
+
+    <form
+        action="{{ url_for('crear_mascota') }}"
+        method="POST"
+    >
+
+        <!-- NOMBRE -->
+
+        <label for="nombre">
+            Nombre:
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+        >
+
+        <br>
+
+
+        <!-- TIPO -->
+
+        <label for="tipo">
+            Tipo:
+        </label>
+
+        <input
+            type="text"
+            id="tipo"
+            name="tipo"
+            required
+        >
+
+        <br>
+
+
+        <!-- COLOR -->
+
+        <label for="color">
+            Color:
+        </label>
+
+        <input
+            type="text"
+            id="color"
+            name="color"
+            required
+        >
+
+        <br>
+
+
+        <!-- BOTÓN -->
+
+        <input
+            type="submit"
+            value="Agregar Mascota"
+        >
+
+    </form>
+
+</body>
+
+</html>

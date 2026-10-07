@@ -3038,4 +3038,3 @@ USUARIO N : N USUARIO
 ```
 
 mediante una tabla intermedia y una consulta `SELF JOIN`.
-Mostrando README.md

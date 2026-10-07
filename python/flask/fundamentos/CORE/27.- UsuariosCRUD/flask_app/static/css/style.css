@@ -1,0 +1,84 @@
+body {
+    background-color: #f5f6f8;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.card,
+.form-card,
+.detail-card {
+    border-radius: 10px;
+}
+
+.form-card,
+.detail-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 35px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.table td {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.acciones {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.detail-info {
+    padding: 25px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.detail-info p {
+    margin-bottom: 15px;
+}
+
+.empty-state {
+    padding: 60px 30px;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 6px;
+}
+
+.btn {
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+    .acciones {
+        flex-direction: column;
+    }
+
+    .acciones .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-card,
+    .detail-card {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Estudiante {{ estudiante.id_estudiante }}
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <div class="detail-card">
+
+
+        <h1>
+
+            Estudiante
+            {{ estudiante.id_estudiante }}
+
+        </h1>
+
+
+        <p class="text-muted">
+
+            Información del estudiante.
+
+        </p>
+
+
+        <hr>
+
+
+        <div class="user-detail">
+
+
+            <p>
+
+                <strong>
+                    Nombre:
+                </strong>
+
+                {{ estudiante.nombre }}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    E-mail:
+                </strong>
+
+                {{ estudiante.email }}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Fecha de creación:
+                </strong>
+
+                {{ estudiante.created_at }}
+
+            </p>
+
+
+        </div>
+
+
+        <!-- ==================================================
+             ACCIONES
+        =================================================== -->
+
+        <div class="mt-4">
+
+
+            <a
+                href="{{ url_for('editar_estudiante', id_estudiante=estudiante.id_estudiante) }}"
+                class="btn btn-warning"
+            >
+                Editar
+            </a>
+
+
+            <a
+                href="{{ url_for('eliminar_estudiante', id_estudiante=estudiante.id_estudiante) }}"
+                class="btn btn-danger"
+                onclick="return confirm('¿Estás seguro de eliminar este estudiante?');"
+            >
+                Eliminar
+            </a>
+
+
+            <a
+                href="{{ url_for('estudiantes') }}"
+                class="btn btn-outline-secondary"
+            >
+                Volver
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

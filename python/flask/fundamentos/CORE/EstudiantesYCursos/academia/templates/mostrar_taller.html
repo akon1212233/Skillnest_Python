@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taller.titulo }}{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Alumnos de {{ taller.titulo }}</h1>
+        <p class="text-muted mb-0">Alumnos inscritos en el taller seleccionado.</p>
+    </div>
+    <a href="{{ url_for('talleres') }}" class="btn btn-outline-primary">Inicio</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+
+        {% if taller.alumnos %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for alumno in taller.alumnos %}
+                            <tr>
+                                <td>{{ alumno.nombre }}</td>
+                                <td>{{ alumno.apellido }}</td>
+                                <td>{{ alumno.edad }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="p-4">
+                <div class="alert alert-info mb-0">Este taller todavía no tiene alumnos.</div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

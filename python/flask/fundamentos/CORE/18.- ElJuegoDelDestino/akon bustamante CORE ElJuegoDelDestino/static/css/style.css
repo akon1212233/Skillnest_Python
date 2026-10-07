@@ -1,0 +1,275 @@
+:root{
+    --color-bg: #0b0c22;
+    --color-primary: #6d5efc;
+    --color-primary-dark: #4338ca;
+    --color-text: #1f2333;
+    --color-muted: #6b7280;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+
+    background-color: var(--color-bg);
+    background-image:
+        radial-gradient(circle at 8% 18%, rgba(148, 163, 184, .55) 0, rgba(148, 163, 184, .55) 26px, transparent 27px),
+        radial-gradient(circle at 92% 14%, rgba(148, 163, 184, .40) 0, rgba(148, 163, 184, .40) 34px, transparent 35px),
+        radial-gradient(circle at 6% 82%, rgba(148, 163, 184, .45) 0, rgba(148, 163, 184, .45) 30px, transparent 31px),
+        radial-gradient(circle at 94% 86%, rgba(148, 163, 184, .35) 0, rgba(148, 163, 184, .35) 40px, transparent 41px),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .10) 1.5px, transparent 1.5px);
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+    background-size: auto, auto, auto, auto, 30px 30px;
+}
+
+.destino-card{
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .45);
+}
+
+/* ---- Encabezado oscuro (compartido por ambas pantallas) ---- */
+.card-header-custom{
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 40px 30px 34px;
+    background: linear-gradient(135deg, #34315c 0%, #211f3d 55%, #2c2a52 100%);
+}
+.card-header-custom::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, rgba(255,255,255,.06) 0%, transparent 35%, transparent 65%, rgba(255,255,255,.05) 100%);
+    pointer-events: none;
+}
+.icono-circulo{
+    position: relative;
+    width: 78px;
+    height: 78px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+}
+.icono-circulo.icono-luna{
+    background: linear-gradient(135deg, #8b7bff, #4f3fd6);
+    box-shadow: 0 10px 25px rgba(79, 63, 214, .55);
+}
+.icono-circulo.icono-sol{
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    box-shadow: 0 10px 25px rgba(217, 119, 6, .5);
+}
+.card-header-custom h1{
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.85rem;
+    margin-bottom: 8px;
+}
+.card-header-custom .descripcion{
+    position: relative;
+    color: rgba(255, 255, 255, .75);
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* ---- Cuerpo claro ---- */
+.card-body-custom{
+    background: #f4f4f8;
+    padding: 36px 34px 40px;
+}
+
+/* ---- Formulario (index.html) ---- */
+.campo-form{
+    margin-bottom: 18px;
+}
+.campo-form .input-group-text{
+    background: #fff;
+    border: 1px solid #e2e2ea;
+    border-right: none;
+    border-radius: 999px 0 0 999px;
+    color: #6d5efc;
+    padding-left: 20px;
+}
+.campo-form .form-control{
+    border: 1px solid #e2e2ea;
+    border-left: none;
+    border-radius: 0 999px 999px 0;
+    padding: 12px 20px 12px 6px;
+}
+.campo-form .form-control:focus{
+    box-shadow: none;
+    border-color: #6d5efc;
+}
+.campo-form .texto-ayuda{
+    display: block;
+    margin: 6px 4px 0;
+    font-size: .82rem;
+    color: var(--color-muted);
+}
+
+.orbe{
+    width: 100px;
+    height: 100px;
+    margin: 26px auto;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #eef1ff 0%, #a9b6ff 35%, #6d5efc 75%, #4c3fd8 100%);
+    box-shadow: 0 15px 35px rgba(76, 63, 216, .4), inset 0 4px 12px rgba(255, 255, 255, .5);
+}
+
+.btn-destino{
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 26px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #8b7bff, #4c3fd8);
+    box-shadow: 0 10px 22px rgba(76, 63, 216, .4);
+    transition: transform .15s ease;
+}
+.btn-destino:hover{
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* ---- Resultado (futuro.html) ---- */
+.caja-prediccion{
+    text-align: center;
+    background: #eafaf0;
+    border-left: 4px solid #16a34a;
+    border-radius: 12px;
+    padding: 26px 24px;
+    margin-bottom: 26px;
+}
+.caja-prediccion i{
+    color: #16a34a;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.caja-prediccion p{
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1f2333;
+}
+
+.tarjeta-info{
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+}
+.tarjeta-info h5{
+    color: #4c3fd8;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.circulo-color{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 1px #e2e2ea, 0 6px 14px rgba(0,0,0,.12);
+}
+.icono-animal{
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #efeaff;
+    color: #6d5efc;
+    font-size: 20px;
+}
+.tarjeta-info p{
+    margin: 0;
+    font-size: .92rem;
+    color: #4b4b5a;
+}
+
+.numero-suerte-titulo{
+    text-align: center;
+    color: #4c3fd8;
+    font-weight: 700;
+    margin: 30px 0 16px;
+}
+.circulo-numero{
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8b7bff, #4c3fd8);
+    color: #fff;
+    font-size: 2.4rem;
+    font-weight: 700;
+    box-shadow: 0 15px 30px rgba(76, 63, 216, .45);
+}
+.texto-numero{
+    text-align: center;
+    color: var(--color-muted);
+    font-size: .92rem;
+    margin-bottom: 26px;
+}
+
+.caja-edad{
+    background: #ffffff;
+    border-left: 4px solid #6d5efc;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 26px;
+    color: #3f3f4e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+}
+
+.pie-estrellas{
+    text-align: center;
+    color: var(--color-muted);
+    font-size: .85rem;
+    margin-top: 8px;
+}
+
+@media (max-width: 576px){
+    body{ padding: 20px 10px; }
+    .card-header-custom{ padding: 32px 22px 28px; }
+    .card-body-custom{ padding: 28px 22px 32px; }
+    .circulo-numero{ width: 90px; height: 90px; font-size: 2rem; }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ restaurante.nombre }}
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <!-- ==================================================
+         ENCABEZADO
+    =================================================== -->
+
+    <div class="page-header">
+
+
+        <div>
+
+            <h1>
+
+                {{ restaurante.nombre }}
+
+            </h1>
+
+
+            <p class="text-muted">
+
+                Tacos pertenecientes a este restaurante.
+
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <a
+                href="{{ url_for('restaurantes') }}"
+                class="btn btn-outline-secondary"
+            >
+
+                Restaurantes
+
+            </a>
+
+
+            <a
+                href="{{ url_for('index') }}"
+                class="btn btn-primary"
+            >
+
+                Crear Taco
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ==================================================
+         TACOS RELACIONADOS
+    =================================================== -->
+
+    {% if restaurante.tacos %}
+
+
+        <div class="row g-4">
+
+
+            {% for taco in restaurante.tacos %}
+
+
+                <div class="col-12 col-md-6 col-lg-4">
+
+
+                    <div class="card taco-card h-100 shadow-sm">
+
+
+                        <div class="card-body">
+
+
+                            <h2 class="h4">
+
+                                Taco #{{ taco.id }}
+
+                            </h2>
+
+
+                            <p>
+
+                                <strong>
+                                    Tortilla:
+                                </strong>
+
+                                {{ taco.tortilla }}
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Guiso:
+                                </strong>
+
+                                {{ taco.guiso }}
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Salsa:
+                                </strong>
+
+                                {{ taco.salsa }}
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="alert alert-info">
+
+            Este restaurante todavía no tiene tacos registrados.
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+</body>
+
+</html>

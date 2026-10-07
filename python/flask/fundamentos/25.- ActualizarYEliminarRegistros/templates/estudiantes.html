@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Estudiantes</title>
+
+
+    <!-- ==================================================
+         BOOTSTRAP
+    =================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         CSS PROPIO
+    =================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <!-- ==================================================
+         ENCABEZADO
+    =================================================== -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Estudiantes
+            </h1>
+
+            <p class="text-muted">
+
+                Listado de estudiantes registrados.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TABLA
+    =================================================== -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-0">
+
+
+            {% if estudiantes %}
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover mb-0">
+
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Nombre
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Fecha Creación
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for estudiante in estudiantes %}
+
+
+                                <tr>
+
+                                    <td>
+                                        {{ estudiante.id_estudiante }}
+                                    </td>
+
+
+                                    <td>
+                                        {{ estudiante.nombre }}
+                                    </td>
+
+
+                                    <td>
+                                        {{ estudiante.email }}
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if estudiante.created_at %}
+
+                                            {{ estudiante.created_at.strftime("%Y-%m-%d") }}
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <div class="acciones">
+
+
+                                            <!-- VER -->
+
+                                            <a
+                                                href="{{ url_for('ver_estudiante', id_estudiante=estudiante.id_estudiante) }}"
+                                                class="btn btn-sm btn-outline-primary"
+                                            >
+                                                Ver
+                                            </a>
+
+
+                                            <!-- EDITAR -->
+
+                                            <a
+                                                href="{{ url_for('editar_estudiante', id_estudiante=estudiante.id_estudiante) }}"
+                                                class="btn btn-sm btn-outline-warning"
+                                            >
+                                                Editar
+                                            </a>
+
+
+                                            <!-- ELIMINAR -->
+
+                                            <a
+                                                href="{{ url_for('eliminar_estudiante', id_estudiante=estudiante.id_estudiante) }}"
+                                                class="btn btn-sm btn-outline-danger"
+                                                onclick="return confirm('¿Estás seguro de eliminar este estudiante?');"
+                                            >
+                                                Eliminar
+                                            </a>
+
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+
+                            {% endfor %}
+
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="empty-state">
+
+                    <h3>
+                        No existen estudiantes.
+                    </h3>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

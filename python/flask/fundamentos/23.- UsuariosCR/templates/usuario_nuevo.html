@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Crear nuevo usuario</title>
+
+
+    <!-- ==================================================
+         BOOTSTRAP
+    =================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         CSS PROPIO
+    =================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+
+            <!-- ==================================================
+                 ENCABEZADO
+            =================================================== -->
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h1 class="mb-0">
+                    Crear nuevo usuario
+                </h1>
+
+
+                <a
+                    href="{{ url_for('usuarios') }}"
+                    class="btn btn-outline-secondary"
+                >
+
+                    Volver
+
+                </a>
+
+            </div>
+
+
+            <!-- ==================================================
+                 FORMULARIO
+            =================================================== -->
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+
+                    <!-- ==================================================
+                         MENSAJE DE ERROR
+                    =================================================== -->
+
+                    {% if error %}
+
+                        <div class="alert alert-danger">
+
+                            {{ error }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <form
+                        action="{{ url_for('crear_usuario') }}"
+                        method="POST"
+                    >
+
+
+                        <!-- NOMBRE -->
+
+                        <div class="mb-3">
+
+                            <label
+                                for="nombre"
+                                class="form-label"
+                            >
+
+                                Nombre
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- APELLIDO -->
+
+                        <div class="mb-3">
+
+                            <label
+                                for="apellido"
+                                class="form-label"
+                            >
+
+                                Apellido
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="apellido"
+                                name="apellido"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="email"
+                                class="form-label"
+                            >
+
+                                E-mail
+
+                            </label>
+
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- BOTÓN -->
+
+                        <div class="d-grid">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+
+                                Crear
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

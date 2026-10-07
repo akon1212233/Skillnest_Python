@@ -1,0 +1,61 @@
+/* ==========================================================
+   USUARIOS CR
+========================================================== */
+
+body {
+    background-color: #f5f6f8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+h1 {
+    font-weight: 700;
+}
+
+
+.card {
+    border-radius: 10px;
+}
+
+
+.table {
+    vertical-align: middle;
+}
+
+
+.table th {
+    white-space: nowrap;
+}
+
+
+.table td {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+
+.empty-state {
+    padding: 60px 30px;
+    text-align: center;
+}
+
+
+.form-control {
+    border-radius: 6px;
+}
+
+
+.btn {
+    border-radius: 6px;
+}
+
+
+@media (max-width: 576px) {
+
+    .d-flex.justify-content-between {
+        align-items: flex-start !important;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}

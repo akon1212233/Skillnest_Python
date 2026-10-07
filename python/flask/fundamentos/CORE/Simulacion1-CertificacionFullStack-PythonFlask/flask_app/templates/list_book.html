@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}BookHub - Mis Libros{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div><h1 class="h2 mb-1">Mis Libros</h1><p class="text-muted mb-0">Administra los libros que has publicado.</p></div>
+  <a class="btn btn-primary" href="{{ url_for('nuevo_libro') }}"><i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Nuevo Libro</a>
+</div>
+<div class="card shadow-sm mb-5">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light"><tr><th>Título</th><th>Autor</th><th>Género</th><th>Fecha</th><th>Favoritos</th><th>Acciones</th></tr></thead>
+      <tbody>
+      {% for libro in mis_libros %}
+        <tr>
+          <td class="fw-semibold">{{ libro.titulo }}</td><td>{{ libro.autor }}</td><td>{{ libro.genero }}</td><td>{{ libro.fecha_publicacion.strftime('%Y-%m-%d') }}</td><td><i class="bi bi-heart-fill me-1" aria-hidden="true"></i>{{ libro.favoritos }}</td>
+          <td class="text-nowrap"><a href="{{ url_for('detalle_libro', libro_id=libro.id) }}">Ver</a> · <a href="{{ url_for('editar_libro', libro_id=libro.id) }}">Editar</a> · <form class="d-inline" method="post" action="{{ url_for('eliminar_libro', libro_id=libro.id) }}" onsubmit="return confirm('¿Eliminar este libro?')"><button class="btn btn-link btn-sm text-danger p-0">Borrar</button></form></td>
+        </tr>
+      {% else %}<tr><td colspan="6" class="text-center text-muted py-4">Todavía no has publicado libros.</td></tr>{% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<section id="comunidad">
+  <h2 class="h3">Libros de la Comunidad</h2>
+  <p class="text-muted">Explora los libros publicados por todos los usuarios registrados.</p>
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light"><tr><th>Título</th><th>Autor</th><th>Género</th><th>Publicado por</th><th>Favoritos</th><th>Acción</th></tr></thead>
+        <tbody>
+        {% for libro in comunidad %}
+          <tr><td>{{ libro.titulo }}</td><td>{{ libro.autor }}</td><td>{{ libro.genero }}</td><td>{{ libro.publicado_por }}</td><td><i class="bi bi-heart-fill me-1" aria-hidden="true"></i>{{ libro.favoritos }}</td><td><a href="{{ url_for('detalle_libro', libro_id=libro.id) }}">Ver</a></td></tr>
+        {% else %}<tr><td colspan="6" class="text-center text-muted py-4">Aún no hay libros en la comunidad.</td></tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

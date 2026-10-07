@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}BookHub - Editar Libro{% endblock %}
+{% block content %}
+<div class="form-page">
+  <div class="mb-4"><h1 class="h2">Editar Libro</h1><p class="text-muted">Actualiza la información de tu libro.</p></div>
+  <div class="card shadow-sm"><div class="card-body p-4">
+    <form method="post" action="{{ url_for('actualizar_libro', libro_id=libro.id) }}">
+      <div class="row g-3">
+        <div class="col-md-6"><label class="form-label">Título</label><input class="form-control" name="titulo" value="{{ libro.titulo }}" required minlength="2"></div>
+        <div class="col-md-6"><label class="form-label">Autor</label><input class="form-control" name="autor" value="{{ libro.autor }}" required></div>
+        <div class="col-md-6"><label class="form-label">Género</label><select class="form-select" name="genero" required>{% for genero in generos %}<option value="{{ genero }}" {% if libro.genero == genero %}selected{% endif %}>{{ genero }}</option>{% endfor %}</select></div>
+        <div class="col-md-6"><label class="form-label">Fecha de publicación</label><input type="date" class="form-control" name="fecha_publicacion" value="{{ libro.fecha_publicacion.strftime('%Y-%m-%d') if libro.fecha_publicacion is not string else libro.fecha_publicacion }}" required></div>
+        <div class="col-12"><label class="form-label">Descripción</label><textarea class="form-control" name="descripcion" rows="5" minlength="10" required>{{ libro.descripcion }}</textarea></div>
+      </div>
+      <div class="mt-4 d-flex gap-2"><button class="btn btn-dark"><i class="bi bi-check-lg me-1" aria-hidden="true"></i>Actualizar</button><a class="btn btn-outline-secondary" href="{{ url_for('detalle_libro', libro_id=libro.id) }}"><i class="bi bi-x-lg me-1" aria-hidden="true"></i>Cancelar</a></div>
+    </form>
+  </div></div>
+</div>
+{% endblock %}

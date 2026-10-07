@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Canciones
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <div class="row g-4">
+
+
+        <!-- ==================================================
+             NUEVA CANCIÓN
+        =================================================== -->
+
+        <div class="col-lg-5">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h1 class="h3 mb-4">
+                        Nueva Canción
+                    </h1>
+
+
+                    {% with mensajes = get_flashed_messages(
+                        with_categories=true
+                    ) %}
+
+                        {% if mensajes %}
+
+                            {% for categoria, mensaje in mensajes %}
+
+                                <div
+                                    class="alert alert-{{ categoria }}"
+                                >
+                                    {{ mensaje }}
+                                </div>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+                    {% endwith %}
+
+
+                    <form
+                        action="{{ url_for('crear_cancion') }}"
+                        method="POST"
+                    >
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="titulo"
+                                class="form-label"
+                            >
+                                Título
+                            </label>
+
+                            <input
+                                type="text"
+                                id="titulo"
+                                name="titulo"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="mb-4">
+
+                            <label
+                                for="artista"
+                                class="form-label"
+                            >
+                                Artista
+                            </label>
+
+                            <input
+                                type="text"
+                                id="artista"
+                                name="artista"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Crear
+                        </button>
+
+                    </form>
+
+
+                    <div class="mt-4">
+
+                        <a
+                            href="{{ url_for('usuarios') }}"
+                        >
+                            Inicio
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             TODAS LAS CANCIONES
+        =================================================== -->
+
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+
+                    <h2 class="h3 mb-4">
+                        Todas las Canciones
+                    </h2>
+
+
+                    {% if canciones %}
+
+                        <div class="list-group">
+
+
+                            {% for cancion in canciones %}
+
+                                <a
+                                    href="{{ url_for('mostrar_cancion', id=cancion.id) }}"
+                                    class="list-group-item list-group-item-action"
+                                >
+
+                                    <strong>
+                                        {{ cancion.titulo }}
+                                    </strong>
+
+                                    <span class="text-muted">
+                                        — {{ cancion.artista }}
+                                    </span>
+
+                                </a>
+
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    {% else %}
+
+                        <div class="alert alert-info">
+                            No existen canciones registradas.
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

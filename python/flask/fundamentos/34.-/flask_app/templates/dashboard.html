@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <h1 class="mb-4">
+            Bienvenido, {{ usuario.nombre }}
+        </h1>
+
+        <p>
+            Has iniciado sesión correctamente.
+        </p>
+
+        <hr>
+
+        <dl class="row">
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">
+                {{ usuario.nombre }}
+            </dd>
+
+            <dt class="col-sm-3">Apellido</dt>
+            <dd class="col-sm-9">
+                {{ usuario.apellido }}
+            </dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">
+                {{ usuario.email }}
+            </dd>
+        </dl>
+
+        <a href="/logout" class="btn btn-danger">
+            Cerrar sesión
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}

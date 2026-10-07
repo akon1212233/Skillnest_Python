@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ usuario.nombre }}
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1>
+                {{ usuario.nombre }}
+            </h1>
+
+            <p class="text-muted">
+                {{ usuario.email }}
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('usuarios') }}"
+            class="btn btn-outline-primary"
+        >
+            Inicio
+        </a>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+        <!-- ==================================================
+             FAVORITOS
+        =================================================== -->
+
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+
+                    <h2 class="h4 mb-4">
+                        Favoritos
+                    </h2>
+
+
+                    {% if usuario.favoritos %}
+
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover">
+
+                                <thead class="table-dark">
+
+                                    <tr>
+
+                                        <th>
+                                            Canción
+                                        </th>
+
+                                        <th>
+                                            Artista
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                    {% for cancion in usuario.favoritos %}
+
+                                        <tr>
+
+                                            <td>
+                                                {{ cancion["titulo"] }}
+                                            </td>
+
+                                            <td>
+                                                {{ cancion["artista"] }}
+                                            </td>
+
+                                        </tr>
+
+                                    {% endfor %}
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+
+                    {% else %}
+
+                        <div class="alert alert-info">
+                            Este usuario todavía no tiene canciones favoritas.
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             AGREGAR FAVORITO
+        =================================================== -->
+
+        <div class="col-lg-5">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+
+                    <h2 class="h4 mb-4">
+                        Agregar Favorito
+                    </h2>
+
+
+                    <form
+                        action="{{ url_for('agregar_favorito') }}"
+                        method="POST"
+                    >
+
+
+                        <!-- El usuario actual se envía oculto. -->
+
+                        <input
+                            type="hidden"
+                            name="usuario_id"
+                            value="{{ usuario.id }}"
+                        >
+
+
+                        <input
+                            type="hidden"
+                            name="origen"
+                            value="usuario"
+                        >
+
+
+                        <div class="mb-4">
+
+                            <label
+                                for="cancion_id"
+                                class="form-label"
+                            >
+                                Canción
+                            </label>
+
+
+                            <select
+                                id="cancion_id"
+                                name="cancion_id"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+                                    Selecciona una canción
+                                </option>
+
+
+                                {% for cancion in canciones %}
+
+                                    <option
+                                        value="{{ cancion.id }}"
+                                    >
+
+                                        {{ cancion.titulo }}
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+
+                            Agregar
+
+                        </button>
+
+
+                    </form>
+
+
+                    <div class="mt-4">
+
+                        <a
+                            href="{{ url_for('canciones') }}"
+                        >
+                            Agregar Canción
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    {% with mensajes = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+        {% if mensajes %}
+
+            <div class="mt-4">
+
+                {% for categoria, mensaje in mensajes %}
+
+                    <div
+                        class="alert alert-{{ categoria }}"
+                    >
+                        {{ mensaje }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+</div>
+
+</body>
+
+</html>

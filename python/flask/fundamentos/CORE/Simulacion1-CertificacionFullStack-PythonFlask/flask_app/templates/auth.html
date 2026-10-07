@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}BookHub - Login / Registro{% endblock %}
+{% block content %}
+<div class="auth-header text-center mb-4">
+  <div class="book-icon"><i class="bi bi-bookshelf"></i></div>
+  <h1 class="display-5 fw-bold">BookHub</h1>
+  <p class="text-muted">Comparte, descubre y comenta libros</p>
+</div>
+<div class="row g-4 justify-content-center">
+  <div class="col-lg-5">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 class="h4">Crear Cuenta</h2>
+        <form method="post" action="{{ url_for('registro') }}" class="mt-3">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Nombre</label><input class="form-control" name="nombre" required minlength="2"></div>
+            <div class="col-md-6"><label class="form-label">Apellido</label><input class="form-control" name="apellido" required minlength="2"></div>
+            <div class="col-12"><label class="form-label">E-mail</label><input type="email" class="form-control" name="email" required></div>
+            <div class="col-md-6"><label class="form-label">Contraseña</label><input type="password" class="form-control" name="password" required minlength="6"></div>
+            <div class="col-md-6"><label class="form-label">Confirmar contraseña</label><input type="password" class="form-control" name="confirm_password" required minlength="6"></div>
+          </div>
+          <button class="btn btn-dark w-100 mt-4">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 class="h4">Iniciar Sesión</h2>
+        <form method="post" action="{{ url_for('login') }}" class="mt-3">
+          <label class="form-label">E-mail</label>
+          <input type="email" class="form-control mb-3" name="email" required>
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control" name="password" required>
+          <button class="btn btn-dark w-100 mt-4">Iniciar Sesión</button>
+        </form>
+        <p class="text-muted small mt-3 mb-0">Tus contraseñas se almacenan protegidas con Bcrypt.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

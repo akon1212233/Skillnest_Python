@@ -1,0 +1,35 @@
+body {
+    background-color: #f5f6f8;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2 {
+    font-weight: 700;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 7px;
+}
+
+.btn {
+    border-radius: 7px;
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.alert {
+    border-radius: 8px;
+}

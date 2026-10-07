@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Detalle del taco
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <!-- ==================================================
+         NAVEGACIÓN
+    =================================================== -->
+
+    <div class="mb-4">
+
+        <a
+            href="{{ url_for('index') }}"
+            class="btn btn-info"
+        >
+
+            Inicio
+
+        </a>
+
+
+        <a
+            href="{{ url_for('tacos') }}"
+            class="btn btn-secondary"
+        >
+
+            Todos los tacos
+
+        </a>
+
+    </div>
+
+
+    <!-- ==================================================
+         DETALLE
+    =================================================== -->
+
+    <div class="card shadow-sm col-12 col-md-6 mx-auto">
+
+        <div class="card-body">
+
+            <h2 class="card-title text-primary">
+
+                Taco {{ taco.id }}
+
+            </h2>
+
+
+            <p>
+
+                <strong>Tortilla:</strong>
+
+                {{ taco.tortilla }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Guiso:</strong>
+
+                {{ taco.guiso }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Salsa:</strong>
+
+                {{ taco.salsa }}
+
+            </p>
+
+
+        </div>
+
+
+        <div class="card-footer">
+
+            <p>
+
+                <strong>
+                    Fecha de creación:
+                </strong>
+
+                {{ taco.created_at.strftime(
+                    "%Y-%m-%d %H:%M:%S"
+                ) }}
+
+            </p>
+
+
+            <div class="d-flex gap-2">
+
+
+                <a
+                    href="{{ url_for('editar', taco_id=taco.id) }}"
+                    class="btn btn-warning"
+                >
+
+                    Editar
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('borrar', taco_id=taco.id) }}"
+                    class="btn btn-danger"
+                    onclick="return confirm(
+                        '¿Estás seguro de eliminar este taco?'
+                    );"
+                >
+
+                    Borrar
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

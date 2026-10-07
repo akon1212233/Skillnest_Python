@@ -1,0 +1,24 @@
+body {
+    background-color: #f3f4f9;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-brand { font-weight: 700; }
+
+.card { border: none; border-radius: 12px; }
+
+.form-control,
+.form-select,
+.btn { border-radius: 8px; }
+
+.list-group-item {
+    border-radius: 8px !important;
+    margin-bottom: 8px;
+}
+
+.table { vertical-align: middle; }
+
+@media (max-width: 768px) {
+    .container { padding-left: 16px; padding-right: 16px; }
+}

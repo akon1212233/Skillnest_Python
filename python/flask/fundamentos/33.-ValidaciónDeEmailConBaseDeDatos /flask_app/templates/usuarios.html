@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Usuarios
+    </title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/style.css'
+        ) }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1>
+                Usuarios
+            </h1>
+
+            <p class="text-muted mb-0">
+                Usuarios registrados en la base de datos.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('nuevo_usuario') }}"
+            class="btn btn-primary"
+        >
+
+            Nuevo Usuario
+
+        </a>
+
+    </div>
+
+
+    <!-- ==================================================
+         MENSAJES FLASH
+    =================================================== -->
+
+    {% with messages = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div
+                    class="alert alert-{{ category }}"
+                >
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ==================================================
+         TABLA
+    =================================================== -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-0">
+
+
+            {% if usuarios %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover mb-0">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Nombre
+                                </th>
+
+                                <th>
+                                    Apellido
+                                </th>
+
+                                <th>
+                                    E-mail
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            {% for usuario in usuarios %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ usuario.id }}
+                                    </td>
+
+                                    <td>
+                                        {{ usuario.nombre }}
+                                    </td>
+
+                                    <td>
+                                        {{ usuario.apellido }}
+                                    </td>
+
+                                    <td>
+                                        {{ usuario.email }}
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+                <div class="p-4">
+
+                    <div class="alert alert-info mb-0">
+
+                        No existen usuarios registrados.
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

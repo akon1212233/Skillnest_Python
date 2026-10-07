@@ -3,35 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Futuro Revelado</title>
-    <!-- Bootstrap 5 CDN -->
+    <title>Tu Destino ha sido Revelado</title>
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background: #2b1055; color: #fff; min-height: 100vh; display: flex; align-items: center; }
-        .card-destiny { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; }
-    </style>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6 text-center">
-                <div class="card card-destiny p-5 shadow-lg">
-                    <h2 class="fw-bold mb-4 text-warning">⭐ Tu Destino ha sido Escrito ⭐</h2>
-                    
-                    <p class="fs-4 mb-4 lh-base">
-                        {{ prediccion }}
-                    </p>
-                    
-                    <hr class="border-secondary mb-4">
-                    
-                    <p class="text-light-50 small mb-4">
-                        Los datos de <strong>{{ nombre }}</strong> han sido procesados y resguardados en la sesión activa del servidor.
-                    </p>
-                    
-                    <a href="{{ url_for('index') }}" class="btn btn-outline-warning fw-bold px-4 py-2">
-                        🔄 Intentar otra vez
-                    </a>
+        <div class="destino-card">
+
+            <!-- ENCABEZADO -->
+            <div class="card-header-custom">
+                <div class="icono-circulo icono-sol">
+                    <i class="bi bi-brightness-high-fill"></i>
                 </div>
+                <h1>Tu Destino ha sido Revelado</h1>
+                <p class="descripcion">Las estrellas han hablado, {{ nombre }}</p>
+            </div>
+
+            <!-- CUERPO -->
+            <div class="card-body-custom">
+
+                <!-- PREDICCIÓN -->
+                <div class="caja-prediccion">
+                    <i class="bi bi-star-fill"></i>
+                    <p>{{ prediccion }}</p>
+                </div>
+
+                <!-- COLOR Y ANIMAL -->
+                <div class="row g-3 mb-2">
+                    <div class="col-6">
+                        <div class="tarjeta-info">
+                            <h5><i class="bi bi-palette-fill"></i> Tu Color</h5>
+                            <div class="circulo-color" style="background-color: {{ color_hex }};"></div>
+                            <p>Tu preferencia por el color <strong>{{ color }}</strong> revela tu afinidad con la <strong>{{ color_meaning }}</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="tarjeta-info">
+                            <h5><i class="bi bi-heart-fill"></i> Tu Animal</h5>
+                            <div class="icono-animal"><i class="bi bi-feather"></i></div>
+                            <p>Tu conexión con el <strong>{{ animal }}</strong> simboliza tu naturaleza de <strong>{{ animal_meaning }}</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NÚMERO DE LA SUERTE -->
+                <h6 class="numero-suerte-titulo">Tu número de la suerte</h6>
+                <div class="circulo-numero">{{ numero_suerte }}</div>
+                <p class="texto-numero">Este número te acompañará en momentos importantes.</p>
+
+                <!-- MENSAJE SEGÚN EDAD -->
+                <div class="caja-edad">
+                    {{ mensaje_edad }}
+                </div>
+
+                <!-- VOLVER A INTENTAR -->
+                <a href="{{ url_for('index') }}" class="btn-destino">
+                    <i class="bi bi-arrow-clockwise"></i> Consultar de nuevo
+                </a>
+
+                <p class="pie-estrellas mt-3">Las estrellas te han hablado hoy: {{ nombre }}.</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Inscripciones
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+
+<div class="container py-5">
+
+
+    <!-- ==================================================
+         ENCABEZADO
+    =================================================== -->
+
+    <div class="text-center mb-5">
+
+        <h1>
+            Inscribir estudiante
+        </h1>
+
+        <p class="text-muted">
+            Relación muchos a muchos entre estudiantes y cursos.
+        </p>
+
+    </div>
+
+
+    <!-- ==================================================
+         MENSAJES
+    =================================================== -->
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+
+        {% if mensajes %}
+
+            {% for categoria, mensaje in mensajes %}
+
+                <div class="alert alert-{{ categoria }}">
+
+                    {{ mensaje }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ==================================================
+         FORMULARIO
+    =================================================== -->
+
+    <div class="card shadow-sm border-0 mb-5">
+
+        <div class="card-body p-4">
+
+            <h2 class="h4 mb-4">
+                Nueva inscripción
+            </h2>
+
+
+            <form
+                action="{{ url_for('inscribir') }}"
+                method="POST"
+            >
+
+
+                <!-- ESTUDIANTE -->
+
+                <div class="mb-3">
+
+                    <label
+                        for="estudiante_id"
+                        class="form-label"
+                    >
+                        Estudiante
+                    </label>
+
+
+                    <select
+                        id="estudiante_id"
+                        name="estudiante_id"
+                        class="form-select"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona un estudiante
+                        </option>
+
+
+                        {% for estudiante in estudiantes %}
+
+                            <option
+                                value="{{ estudiante.id_estudiante }}"
+                            >
+
+                                {{ estudiante.nombre }}
+                                — {{ estudiante.email }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- CURSO -->
+
+                <div class="mb-4">
+
+                    <label
+                        for="curso_id"
+                        class="form-label"
+                    >
+                        Curso
+                    </label>
+
+
+                    <select
+                        id="curso_id"
+                        name="curso_id"
+                        class="form-select"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona un curso
+                        </option>
+
+
+                        {% for curso in cursos %}
+
+                            <option
+                                value="{{ curso.id_curso }}"
+                            >
+
+                                {{ curso.nombre_curso }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+
+                    Inscribir
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         INSCRIPCIONES REGISTRADAS
+    =================================================== -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <h2 class="h4 mb-4">
+                Inscripciones registradas
+            </h2>
+
+
+            {% if inscripciones %}
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>
+                                    Estudiante
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Curso
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for inscripcion in inscripciones %}
+
+                                <tr>
+
+                                    <td>
+
+                                        {{ inscripcion.estudiante }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ inscripcion.email }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ inscripcion.nombre_curso }}
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="alert alert-info mb-0">
+
+                    Todavía no existen inscripciones.
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

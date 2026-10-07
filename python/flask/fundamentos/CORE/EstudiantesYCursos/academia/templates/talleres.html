@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Talleres{% endblock %}
+
+{% block contenido %}
+<div class="row g-4">
+
+    <!-- ================= NUEVO TALLER ================= -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h1 class="h3 mb-4">Nuevo Taller</h1>
+
+                <form action="{{ url_for('crear_taller') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input type="text" id="titulo" name="titulo" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TODOS LOS TALLERES ================= -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h2 class="h3 mb-4">Todos los Talleres</h2>
+
+                {% if talleres %}
+                    <div class="list-group">
+                        {% for taller in talleres %}
+                            <a href="{{ url_for('mostrar_taller', id=taller.id) }}"
+                               class="list-group-item list-group-item-action">
+                                {{ taller.titulo }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">No hay talleres registrados.</div>
+                {% endif %}
+
+                <div class="mt-4">
+                    <a href="{{ url_for('nuevo_alumno') }}" class="btn btn-primary">Agregar Alumno</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

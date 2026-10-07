@@ -1,0 +1,9 @@
+body { background: #f7f7f8; color: #202124; }
+.auth-header { padding-top: 1.5rem; }
+.book-icon { font-size: 3.5rem; line-height: 1; }
+.card { border: 1px solid #e3e3e3; border-radius: .65rem; }
+.table th { white-space: nowrap; font-size: .9rem; }
+.table td { font-size: .94rem; }
+.form-page { max-width: 900px; margin: 0 auto; }
+.book-placeholder { width: 150px; min-width: 150px; height: 190px; background: #e9ecef; display: grid; place-items: center; font-size: 4rem; border-radius: .35rem; }
+@media (max-width: 576px) { .book-placeholder { width: 100px; min-width: 100px; height: 135px; font-size: 2.5rem; } }

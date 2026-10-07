@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Éxito</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/usuario.css') }}">
+</head>
+<body>
+    <main>
+        {% with messages = get_flashed_messages(category_filter=["success_msg"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="success-banner">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h1>¡Éxito! Bienvenido/a</h1>
+        
+        <div class="perfil-info">
+            <p><strong>Nombre completo:</strong> {{ usuario['nombre'] }} {{ usuario['apellido'] }}</p>
+            <p><strong>Correo electrónico:</strong> {{ usuario['email'] }}</p>
+            <p><strong>Fecha de nacimiento:</strong> {{ usuario['fecha_nacimiento'] }}</p>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="btn-logout">Cerrar Sesión</a>
+    </main>
+</body>
+</html>

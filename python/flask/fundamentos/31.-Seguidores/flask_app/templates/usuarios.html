@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Seguidores
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/style.css'
+        ) }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+
+    <!-- ==================================================
+         ENCABEZADO
+    =================================================== -->
+
+    <div class="text-center mb-5">
+
+        <h1>
+            Seguidores
+        </h1>
+
+        <p class="text-muted">
+            Gestiona usuarios y sus relaciones de seguimiento.
+        </p>
+
+    </div>
+
+
+    <!-- ==================================================
+         MENSAJES
+    =================================================== -->
+
+    {% with mensajes = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+        {% if mensajes %}
+
+            {% for categoria, mensaje in mensajes %}
+
+                <div class="alert alert-{{ categoria }}">
+
+                    {{ mensaje }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ==================================================
+         RELACIONES
+    =================================================== -->
+
+    <div class="card shadow-sm border-0 mb-5">
+
+        <div class="card-body p-4">
+
+            <h2 class="h3 mb-4">
+                Seguidores
+            </h2>
+
+
+            {% if relaciones %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>
+                                    Usuario
+                                </th>
+
+                                <th>
+                                    Seguidor
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for relacion in relaciones %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ relacion["usuario_nombre"] }}
+                                    </td>
+
+                                    <td>
+                                        {{ relacion["seguidor_nombre"] }}
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-info mb-0">
+
+                    Todavía no existen relaciones registradas.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+        <!-- ==================================================
+             NUEVO USUARIO
+        =================================================== -->
+
+        <div class="col-lg-6">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 mb-4">
+                        Nuevo Usuario
+                    </h2>
+
+
+                    <form
+                        action="{{ url_for('crear_usuario') }}"
+                        method="POST"
+                    >
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="nombre"
+                                class="form-label"
+                            >
+
+                                Nombre
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="apellido"
+                                class="form-label"
+                            >
+
+                                Apellido
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="apellido"
+                                name="apellido"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="mb-4">
+
+                            <label
+                                for="email"
+                                class="form-label"
+                            >
+
+                                E-mail
+
+                            </label>
+
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                maxlength="45"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+
+                            Crear
+
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             SEGUIR
+        =================================================== -->
+
+        <div class="col-lg-6">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 mb-4">
+                        Seguir
+                    </h2>
+
+
+                    <form
+                        action="{{ url_for('seguir') }}"
+                        method="POST"
+                    >
+
+
+                        <!-- USUARIO -->
+
+                        <div class="mb-3">
+
+                            <label
+                                for="usuario_id"
+                                class="form-label"
+                            >
+
+                                Usuario
+
+                            </label>
+
+
+                            <select
+                                id="usuario_id"
+                                name="usuario_id"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+
+                                    Selecciona un usuario
+
+                                </option>
+
+
+                                {% for usuario in usuarios %}
+
+                                    <option
+                                        value="{{ usuario.id }}"
+                                    >
+
+                                        {{ usuario.nombre }}
+                                        {{ usuario.apellido }}
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- SEGUIDOR -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="seguidor_id"
+                                class="form-label"
+                            >
+
+                                Seguidor
+
+                            </label>
+
+
+                            <select
+                                id="seguidor_id"
+                                name="seguidor_id"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+
+                                    Selecciona un seguidor
+
+                                </option>
+
+
+                                {% for usuario in usuarios %}
+
+                                    <option
+                                        value="{{ usuario.id }}"
+                                    >
+
+                                        {{ usuario.nombre }}
+                                        {{ usuario.apellido }}
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                        >
+
+                            Seguir
+
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

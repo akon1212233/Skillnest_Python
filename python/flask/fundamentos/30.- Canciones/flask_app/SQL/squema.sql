@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS esquema_canciones;
+
+USE esquema_canciones;
+CREATE TABLE usuarios(
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+CREATE TABLE canciones(
+    id INT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    artista VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+CREATE TABLE favoritos(
+    usuario_id INT NOT NULL,
+    cancion_id INT NOT NULL,
+    PRIMARY KEY (usuario_id, cancion_id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (cancion_id) REFERENCES canciones(id)
+);

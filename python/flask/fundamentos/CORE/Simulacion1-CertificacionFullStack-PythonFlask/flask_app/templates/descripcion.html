@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% block title %}BookHub - {{ libro.titulo }}{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card shadow-sm"><div class="card-body p-4">
+      <div class="d-flex gap-4 align-items-start">
+        <div class="book-placeholder"><i class="bi bi-book"></i></div>
+        <div class="flex-grow-1">
+          <h1 class="h2">{{ libro.titulo }}</h1>
+          <p class="mb-1"><strong>Autor:</strong> {{ libro.autor }}</p>
+          <p class="mb-1"><strong>Género:</strong> {{ libro.genero }}</p>
+          <p class="mb-1"><strong>Publicado por:</strong> {{ libro.publicado_por }}</p>
+          <p class="mb-3"><strong>Fecha:</strong> {{ libro.fecha_publicacion.strftime('%Y-%m-%d') }}</p>
+          <form method="post" action="{{ url_for('favorito', libro_id=libro.id) }}"><button class="btn {% if es_favorito %}btn-warning{% else %}btn-outline-dark{% endif %}">{% if es_favorito %}<i class="bi bi-heart-fill me-1" aria-hidden="true"></i>Quitar de Favoritos{% else %}<i class="bi bi-heart me-1" aria-hidden="true"></i>Agregar a Favoritos{% endif %}</button></form>
+        </div>
+      </div>
+      <hr><h2 class="h5">Descripción</h2><p class="mb-0">{{ libro.descripcion }}</p>
+      {% if libro.usuario_id == session.get('user_id') %}<div class="mt-4"><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('editar_libro', libro_id=libro.id) }}"><i class="bi bi-pencil me-1" aria-hidden="true"></i>Editar</a></div>{% endif %}
+    </div></div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card shadow-sm"><div class="card-body"><h2 class="h5">Usuarios que agregaron este libro</h2><p class="text-muted small">{{ favoritos|length }} favorito(s)</p><ul class="list-group list-group-flush">{% for usuario in favoritos %}<li class="list-group-item px-0">{{ usuario.nombre }}</li>{% else %}<li class="list-group-item px-0 text-muted">Todavía nadie lo ha agregado.</li>{% endfor %}</ul></div></div>
+  </div>
+</div>
+<a class="d-inline-block mt-4" href="{{ url_for('libros') }}"><i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Volver a Mis Libros</a>
+{% endblock %}
+

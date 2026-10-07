@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS esquema_seguidores;
+USE esquema_seguidores;
+
+CREATE TABLE usuarios(
+    id INT NOT NULL UNIQUE AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
+);
+CREATE TABLE seguidores(
+    id INT NOT NULL AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    seguidor_id INT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE(usuario_id,seguidor_id),
+    PRIMARY KEY(id), 
+    FOREIGN KEY(usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY(seguidor_id) REFERENCES usuarios(id)
+);
